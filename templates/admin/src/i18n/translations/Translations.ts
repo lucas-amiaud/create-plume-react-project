@@ -11,6 +11,7 @@ export type Translations = {
   'action.search': string,
   'action.add': string,
   'action.update': string,
+  'action.close': string,
   'action.authenticate': string,
   'action.disconnect': string,
   'action.google.authenticate': string
@@ -49,6 +50,8 @@ export type Translations = {
   'user.title-list': string,
   'user.title-create': string,
   'user.title-edit': string,
+  'user.popin.title-delete': string,
+  'user.popin.cancel': string,
   'user.error-passwords-different': string,
   'user.list.count': (count: number) => string,
   'user.sort.name_desc': string,

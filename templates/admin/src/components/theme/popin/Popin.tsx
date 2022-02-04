@@ -7,7 +7,7 @@ import { Panel } from '../layout/Panel';
 import MessageService from '../../../i18n/messages/MessageService';
 
 export function Popin({
-  children, zIndex, height, width,
+  children, zIndex, height, width
 }: PopinProps) {
   return (
     <div className="popin" style={{ zIndex: zIndex ?? 100 }}>
@@ -19,16 +19,19 @@ export function Popin({
 }
 
 export function PopinCloseWithoutSaving(
-  { confirmCloseWithoutSaving, closeWithoutSavingAction }: PopinCloseWithoutSavingProps,
+  { title, confirmCloseWithoutSaving, closeWithoutSavingAction }: PopinCloseWithoutSavingProps,
 ) {
   const messages = getGlobalInstance(MessageService).t();
 
   return confirmCloseWithoutSaving.shouldAskConfirmation
     ? (
       <Popin zIndex={101}>
-        <Panel>
+        <div className="popin-title">
+          {title}
+        </div>
+        <div className="popin-message">
           {messages['message.unsaved-data']}
-        </Panel>
+        </div>
         <ActionsContainer>
           <ActionButton
             style={ActionStyle.DANGER}

@@ -13,6 +13,8 @@ import { PageBloc, PageBlocColumn } from './layout/PageBloc';
 import ListFilterMenu from './layout/ListFilterMenu';
 import ListSortMenu from './layout/ListSortMenu';
 import ListSearchBar from './layout/ListSearchBar';
+import Drawer from './drawer/Drawer';
+import UncontrolledDrawer from './drawer/UncontrolledDrawer';
 
 export default class AdminTheme implements PlumeAdminTheme {
   pageTitle = PageTitle;
@@ -48,6 +50,10 @@ export default class AdminTheme implements PlumeAdminTheme {
   popin = Popin;
 
   popinCloseWithoutSaving = PopinCloseWithoutSaving;
+
+  drawer = Drawer;
+
+  uncontrolledDrawer = UncontrolledDrawer;
 
   formField = FormField;
 

@@ -33,9 +33,9 @@ function findUser(userId: string, usersWithRoles?: AdminUsersWithIndexedRolesTyp
 
 export default class UsersEdit {
   constructor(private readonly userApi: UserApi,
-    private readonly notificationEngine: NotificationEngine,
-    private readonly theme: PlumeAdminTheme,
-    private readonly messages: PlumeMessageResolver) {
+              private readonly notificationEngine: NotificationEngine,
+              private readonly theme: PlumeAdminTheme,
+              private readonly messages: PlumeMessageResolver) {
   }
 
   render = ({ usersWithRoles, updateUsersAndRoles, usersPath }: Props) => {
@@ -55,7 +55,9 @@ export default class UsersEdit {
     });
 
     // when the users are loaded from the upper component, we need update the form with the new values
-    useOnDependenciesChange(() => reset(userToEdit), [usersWithRoles]);
+    useOnDependenciesChange(() => {
+      reset(userToEdit);
+    }, [usersWithRoles]);
 
     // data validation
 
@@ -87,17 +89,17 @@ export default class UsersEdit {
 
     const trySaveUser = (userToSave: AdminUserParameters) => {
       if (validatePasswordAndConfirmationEmptiness(userToSave) && validatePasswordAndConfirmation(userToSave)) {
-        savingLoader.monitor(this
-          .userApi
-          .save(userToSave)
-          .then((createdUser) => {
-            updateUsersAndRoles();
-            this.notificationEngine.addSuccess(this.messages.t('message.changes-saved'));
-            if (createdUser) {
-              history.push(`${usersPath}/${createdUser.id}`);
-            }
-          })
-          .catch((httpError) => this.notificationEngine.addDanger(this.messages.httpError(httpError))));
+        savingLoader.monitor(
+          this.userApi
+            .save(userToSave)
+            .then((createdUser) => {
+              updateUsersAndRoles();
+              this.notificationEngine.addSuccess(this.messages.t('message.changes-saved'));
+              if (createdUser) {
+                history.push(`${usersPath}/${createdUser.id}`);
+              }
+            })
+            .catch((httpError) => this.notificationEngine.addDanger(this.messages.httpError(httpError))));
       }
     };
 
@@ -128,52 +130,64 @@ export default class UsersEdit {
     const confirmCloseWithoutSaving = useConfirmation({ onlyIf: Object.keys(dirtyFields).length !== 0 });
 
     return (
-      <this.theme.popin>
+      <this.theme.uncontrolledDrawer
+        title={isCreation ? this.messages.t('user.title-create') : this.messages.t('user.title-edit')}
+        onClose={cancelEdit}
+      >
         <this.theme.popinCloseWithoutSaving
+          title={this.messages.t('user.popin.cancel')}
           confirmCloseWithoutSaving={confirmCloseWithoutSaving}
           closeWithoutSavingAction={cancelEdit}
         />
-        {confirmDeleteUser.shouldAskConfirmation && (
-        <this.theme.popin zIndex={101}>
-          {this.messages.t('message.confirm-delete')}
-          <this.theme.actionsContainer>
-            <this.theme.actionButton
-              style={ActionStyle.SECONDARY}
-              onClick={confirmDeleteUser.reset}
-            >
-              {this.messages.t('action.cancel')}
-            </this.theme.actionButton>
-            <this.theme.actionButton
-              style={ActionStyle.DANGER}
-              onClick={confirmDeleteUser.confirm(() => tryDeleteUser(userId))}
-            >
-              {this.messages.t('action.delete')}
-            </this.theme.actionButton>
-          </this.theme.actionsContainer>
-        </this.theme.popin>
-        )}
-        <h2>{isCreation ? this.messages.t('user.title-create') : this.messages.t('user.title-edit')}</h2>
-        <this.theme.actionsContainer>
-          <this.theme.actionLink
-            iconName="keyboard_arrow_left"
-            linkTo={usersPath}
-          >
-            {this.messages.t('action.back')}
-          </this.theme.actionLink>
-        </this.theme.actionsContainer>
+        {
+          confirmDeleteUser.shouldAskConfirmation
+          && (
+            <this.theme.popin zIndex={101}>
+              <div className="popin-title">
+                {this.messages.t('user.popin.title-delete')}
+              </div>
+              <div className="popin-message">
+                {this.messages.t('message.confirm-delete')}
+              </div>
+              <this.theme.actionsContainer>
+                <this.theme.actionButton
+                  style={ActionStyle.SECONDARY}
+                  onClick={confirmDeleteUser.reset}
+                >
+                  {this.messages.t('action.cancel')}
+                </this.theme.actionButton>
+                <this.theme.actionButton
+                  style={ActionStyle.DANGER}
+                  onClick={confirmDeleteUser.confirm(() => tryDeleteUser(userId))}
+                >
+                  {this.messages.t('action.delete')}
+                </this.theme.actionButton>
+              </this.theme.actionsContainer>
+            </this.theme.popin>
+          )
+        }
         <this.theme.panel>
           <form onSubmit={handleSubmit(trySaveUser)}>
             <input type="hidden" name="id" value={userToEdit?.id} />
-            <this.theme.formField inputId="userName" label={this.messages.t('users.USERNAME')} error={errors.userName}>
-              <this.theme.inputText control={control} name="userName" rules={{ required: true }} useNameAsId />
+            <this.theme.formField
+              inputId="userName"
+              error={errors.userName}
+            >
+              <this.theme.inputText
+                control={control}
+                label={this.messages.t('users.USERNAME')}
+                name="userName"
+                rules={{ required: true }}
+                useNameAsId
+              />
             </this.theme.formField>
             <this.theme.formField
               inputId="email"
-              label={this.messages.t('users.EMAIL')}
               error={errors.email}
               errorMessageMapping={makeErrorMessageMapping(this.messages.t('error.field.email-wrong-format'))}
             >
               <this.theme.inputText
+                label={this.messages.t('users.EMAIL')}
                 name="email"
                 control={control}
                 rules={{ required: true, validate: isEmail }}
@@ -182,48 +196,53 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="firstName"
-              label={this.messages.t('users.FIRSTNAME')}
               error={errors.firstName}
             >
-              <this.theme.inputText control={control} name="firstName" rules={{ required: true }} useNameAsId />
+              <this.theme.inputText
+                control={control}
+                name="firstName"
+                label={this.messages.t('users.FIRSTNAME')}
+                rules={{ required: true }}
+                useNameAsId
+              />
             </this.theme.formField>
-            <this.theme.formField inputId="lastName" label={this.messages.t('users.LASTNAME')} error={errors.lastName}>
-              <this.theme.inputText control={control} name="lastName" rules={{ required: true }} useNameAsId />
+            <this.theme.formField
+              inputId="lastName"
+              error={errors.lastName}
+            >
+              <this.theme.inputText
+                label={this.messages.t('users.LASTNAME')}
+                control={control}
+                name="lastName"
+                rules={{ required: true }}
+                useNameAsId
+              />
             </this.theme.formField>
-            <this.theme.formField inputId="idRole" label={this.messages.t('users.ROLE')} error={errors.idRole}>
+            <this.theme.formField
+              inputId="idRole"
+              error={errors.idRole}
+            >
               <this.theme.inputSelect
                 name="idRole"
+                label={this.messages.t('users.ROLE')}
                 useNameAsId
                 control={control}
                 defaultValue={userToEdit?.idRole}
+                options={
+                  Array.from(usersWithRoles?.roles || []).map(
+                    ([roleId, roleName]) => ({ value: roleId, label: roleName }))
+                }
                 required
-              >
-                {
-                usersWithRoles
-                  ? Array
-                    .from(usersWithRoles?.roles)
-                    .map(
-                      ([roleId, roleName]) => (
-                        <option
-                          key={roleId}
-                          value={roleId}
-                        >
-                          {roleName}
-                        </option>
-                      ),
-                    )
-                  : undefined
-              }
-              </this.theme.inputSelect>
+              />
             </this.theme.formField>
             <this.theme.panelSeparator />
             <this.theme.formField
               inputId="password"
-              label={this.messages.t('users.PASSWORD')}
               error={errors.password}
               errorMessageMapping={makeErrorMessageMapping(this.messages.t('user.error-passwords-different'))}
             >
               <this.theme.inputText
+                label={this.messages.t('users.PASSWORD')}
                 control={control}
                 type="password"
                 name="password"
@@ -235,11 +254,11 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="passwordConfirmation"
-              label={this.messages.t('users.PASSWORD_CONFIRM')}
               error={errors.passwordConfirmation}
             >
               <this.theme.inputText
                 control={control}
+                label={this.messages.t('users.PASSWORD_CONFIRM')}
                 type="password"
                 name="passwordConfirmation"
                 autoComplete="off"
@@ -248,19 +267,22 @@ export default class UsersEdit {
                 useNameAsId
               />
             </this.theme.formField>
-            {userToEdit
+            {
+              userToEdit
               && (
-              <>
-                <this.theme.panelSeparator />
-                <this.theme.formField label={this.messages.t('label.creation-date')}>
-                  <this.theme.inputText
-                    control={control}
-                    disabled
-                    defaultValue={dayjs(userToEdit.creationDate).format('L LT')}
-                  />
-                </this.theme.formField>
-              </>
-              )}
+                <>
+                  <this.theme.panelSeparator />
+                  <this.theme.formField>
+                    <this.theme.inputText
+                      control={control}
+                      label={this.messages.t('label.creation-date')}
+                      disabled
+                      defaultValue={dayjs(userToEdit.creationDate).format('L LT')}
+                    />
+                  </this.theme.formField>
+                </>
+              )
+            }
             <this.theme.actionsContainer>
               <this.theme.actionButton
                 iconName="keyboard_arrow_left"
@@ -271,14 +293,14 @@ export default class UsersEdit {
               </this.theme.actionButton>
               {
                 userId && (
-                <this.theme.actionButton
-                  iconName="delete"
-                  style={ActionStyle.DANGER}
-                  onClick={confirmDeleteUser.handleConfirmation(() => tryDeleteUser(userId))}
-                  isLoading={deletingLoader.isLoading}
-                >
-                  {this.messages.t('action.delete')}
-                </this.theme.actionButton>
+                  <this.theme.actionButton
+                    iconName="delete"
+                    style={ActionStyle.DANGER}
+                    onClick={confirmDeleteUser.handleConfirmation(() => tryDeleteUser(userId))}
+                    isLoading={deletingLoader.isLoading}
+                  >
+                    {this.messages.t('action.delete')}
+                  </this.theme.actionButton>
                 )
               }
               <this.theme.actionButton iconName="save" style={ActionStyle.PRIMARY} isLoading={savingLoader.isLoading}>
@@ -287,7 +309,7 @@ export default class UsersEdit {
             </this.theme.actionsContainer>
           </form>
         </this.theme.panel>
-      </this.theme.popin>
+      </this.theme.uncontrolledDrawer>
     );
   };
 }

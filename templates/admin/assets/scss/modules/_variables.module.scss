@@ -1,0 +1,9 @@
+@use "../variables" as *;
+
+:export{
+  widthSmallScreen: $width-small-screen-px;
+  widthMediumScreen: $width-medium-screen-px;
+
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
+}

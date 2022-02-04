@@ -24,11 +24,21 @@ export type InputTextProps = {
 
 export type InputSelectProps = {
   name: string;
-  id?:string;
-  required?:boolean;
+  id?: string;
+  required?: boolean;
   useNameAsId?: boolean;
   defaultValue?: string | number;
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   control: Control<any>;
-  children?: React.ReactNode;
+  options: SelectOptionProps[];
+  label: string;
+  rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
+  onBlur?: FocusEventHandler<any>;
+  onChange?: Function;
+  disabled?: boolean;
 };
+
+export type SelectOptionProps = {
+  label: string,
+  value: any,
+}

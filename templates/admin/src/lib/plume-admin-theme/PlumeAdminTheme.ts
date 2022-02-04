@@ -9,12 +9,13 @@ import {
   ListSingleElementProps,
   ListSortMenuProps,
   PanelProps,
-  StatusDotProps
+  StatusDotProps,
 } from './layout/LayoutProps';
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
 import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 import { FormFieldProps } from './form/FormFieldProps';
 import { InputSelectProps, InputTextProps } from './form/FormInputProps';
+import { DrawerTypeProps, UncontrolledDrawerTypeProps } from './drawer/DrawerProps';
 
 export default abstract class PlumeAdminTheme {
   // layout
@@ -53,6 +54,11 @@ export default abstract class PlumeAdminTheme {
   abstract popin: (props: PopinProps) => JSX.Element;
 
   abstract popinCloseWithoutSaving: (props: PopinCloseWithoutSavingProps) => JSX.Element | null;
+
+  //drawer
+  abstract drawer: (props: DrawerTypeProps) => JSX.Element;
+
+  abstract uncontrolledDrawer: (props: UncontrolledDrawerTypeProps) => JSX.Element;
 
   // form
   abstract formField: (props: FormFieldProps) => JSX.Element;

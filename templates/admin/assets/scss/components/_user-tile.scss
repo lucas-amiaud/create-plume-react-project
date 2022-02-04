@@ -46,6 +46,7 @@
         text-align: right;
 
         &--accent {
+          font-size: $font-size-mini;
           padding: .5rem;
           border-radius: .5rem;
           text-transform: uppercase;
