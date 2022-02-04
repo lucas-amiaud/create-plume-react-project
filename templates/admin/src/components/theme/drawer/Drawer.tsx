@@ -5,7 +5,7 @@ import { getGlobalInstance } from 'plume-ts-di';
 import cssVariables from '../../../../assets/scss/modules/_variables.module.scss';
 import MessageService from '../../../i18n/messages/MessageService';
 import { ActionButton } from '../action/Actions';
-import { DrawerTypeProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
+import { DrawerTypeProps } from '../../../lib/plume-admin-theme/drawer/DrawerProps';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 
 export default function Drawer(

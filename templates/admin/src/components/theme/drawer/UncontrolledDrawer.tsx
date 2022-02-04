@@ -2,7 +2,7 @@ import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useOnDependenciesChange } from '../../../lib/react-hooks-alias/ReactHooksAlias';
 import useToggle from '../../../lib/react-hook-toggle/ReactHookToggle';
-import { UncontrolledDrawerTypeProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
+import { UncontrolledDrawerTypeProps } from '../../../lib/plume-admin-theme/drawer/DrawerProps';
 import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
 
 /**
