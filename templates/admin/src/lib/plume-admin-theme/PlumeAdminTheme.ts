@@ -2,12 +2,6 @@ import {
   LayoutPageBlocColumnProps,
   LayoutPageBlocProps,
   LayoutPageTitleProps,
-  ListElementsProps,
-  ListFilterMenuProps,
-  ListHeaderProps,
-  ListSearchBarProps,
-  ListSingleElementProps,
-  ListSortMenuProps,
   PanelProps,
   StatusDotProps,
 } from './layout/LayoutProps';
@@ -16,6 +10,14 @@ import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 import { FormFieldProps } from './form/FormFieldProps';
 import { InputSelectProps, InputTextProps } from './form/FormInputProps';
 import { DrawerTypeProps, UncontrolledDrawerTypeProps } from './drawer/DrawerProps';
+import {
+  ListElementsProps,
+  ListFilterMenuProps,
+  ListHeaderProps,
+  ListSearchBarProps,
+  ListSingleElementProps,
+  ListSortMenuProps,
+} from './list/ListProps';
 
 export default abstract class PlumeAdminTheme {
   // layout

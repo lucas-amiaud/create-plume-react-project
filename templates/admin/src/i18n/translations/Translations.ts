@@ -54,11 +54,21 @@ export type Translations = {
   'user.popin.cancel': string,
   'user.error-passwords-different': string,
   'user.list.count': (count: number) => string,
-  'user.sort.name_desc': string,
-  'user.sort.name_asc': string,
-  'user.filter.title': string,
-  'user.filter.name': string,
-  'user.filter.role': string,
+  // sorts wording
+  'sort': {
+    'user': {
+      'name_desc': string,
+      'name_asc': string,
+    },
+  }
+  // filters wording
+  'filter': {
+    'user': {
+      'title': string,
+      'name': string,
+      'role': string,
+    }
+  }
   // sample with pluralization
   'clicks.count': (count: number) => string,
   // errors
