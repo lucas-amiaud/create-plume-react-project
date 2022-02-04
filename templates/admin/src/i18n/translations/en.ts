@@ -48,6 +48,7 @@ const enMessages: Translations = {
   'user.title-list': 'Users list',
   'user.title-create': 'User creation',
   'user.title-edit': 'User modification',
+  'user.add': 'Add user',
   'user.popin.title-delete': 'Delete user',
   'user.popin.cancel': 'Cancel entry',
   'user.error-passwords-different': 'Password do not match its confirmation',

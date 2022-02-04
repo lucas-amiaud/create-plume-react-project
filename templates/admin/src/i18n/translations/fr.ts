@@ -48,6 +48,7 @@ const frMessages: Translations = {
   'user.title-list': 'Liste des utilisateurs',
   'user.title-create': 'Création d\'un utilisateur',
   'user.title-edit': 'Modification d\'un utilisateur',
+  'user.add': 'Ajouter un utilisateur',
   'user.popin.title-delete': 'Supprimer l\'utilisateur',
   'user.popin.cancel': 'Annuler la saisie',
   'user.list.count': (count: number) => 'Nombre d\'utilisateurs : ' + count,
