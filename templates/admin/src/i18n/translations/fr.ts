@@ -32,6 +32,8 @@ const frMessages: Translations = {
   'nav.home': 'Accueil',
   'nav.users': 'Gestion des utilisateurs',
   'nav.user-list': 'Utilisateurs',
+  'nav.settings': 'Paramètres',
+  'nav.log-api': 'API Logs',
   // home
   'home.title': 'Page d\'accueil',
   'login.title': 'Se connecter',

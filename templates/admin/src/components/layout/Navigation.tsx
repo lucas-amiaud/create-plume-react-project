@@ -6,7 +6,7 @@ import MessageService from '../../i18n/messages/MessageService';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import Permission from '../../services/session/Permission';
 import SessionService from '../../services/session/SessionService';
-import { HOME, USERS } from '../Routes';
+import { HOME, LOG_API, USERS } from '../Routes';
 import { IconType } from '../theme/IconType';
 
 type LinkListItemProps = {
@@ -138,6 +138,19 @@ export default function Navigation() {
                 icon="account_circle"
                 route={USERS}
                 label={messages['nav.user-list']}
+                drawerOpen={isDrawerOpened}
+              />
+            </NestedItem>
+          )
+        }
+        {
+          sessionService.hasPermission(Permission.MANAGE_SYSTEM)
+          && (
+            <NestedItem icon="settings" label={messages['nav.settings']} drawerOpen={isDrawerOpened}>
+              <LinkListItem
+                icon="http"
+                route={LOG_API}
+                label={messages['nav.log-api']}
                 drawerOpen={isDrawerOpened}
               />
             </NestedItem>

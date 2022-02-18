@@ -32,6 +32,8 @@ const enMessages: Translations = {
   'nav.home': 'Home',
   'nav.users': 'User management',
   'nav.user-list': 'Users',
+  'nav.settings': 'Paramètres',
+  'nav.log-api': 'API Logs',
   // home
   'home.title': 'Home page',
   'login.title': 'Please authenticate',

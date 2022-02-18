@@ -33,6 +33,8 @@ export type Translations = {
   'nav.home': string,
   'nav.users': string,
   'nav.user-list': string,
+  'nav.settings': string,
+  'nav.log-api': string,
   // home
   'home.title': string,
   // login
