@@ -1,3 +1,7 @@
+import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
+import { DrawerTypeProps, UncontrolledDrawerTypeProps } from './drawer/DrawerProps';
+import { FormFieldProps } from './form/FormFieldProps';
+import { InputSelectProps, InputTextProps } from './form/FormInputProps';
 import {
   LayoutPageBlocColumnProps,
   LayoutPageBlocProps,
@@ -5,19 +9,16 @@ import {
   PanelProps,
   StatusDotProps,
 } from './layout/LayoutProps';
-import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
-import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
-import { FormFieldProps } from './form/FormFieldProps';
-import { InputSelectProps, InputTextProps } from './form/FormInputProps';
-import { DrawerTypeProps, UncontrolledDrawerTypeProps } from './drawer/DrawerProps';
 import {
   ListElementsProps,
-  ListFilterMenuProps,
   ListHeaderProps,
+  ListObjectFiltersProps,
+  ListRawFiltersProps,
   ListSearchBarProps,
   ListSingleElementProps,
   ListSortMenuProps,
 } from './list/ListProps';
+import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
   // layout
@@ -37,7 +38,9 @@ export default abstract class PlumeAdminTheme {
 
   abstract listSortMenu: (props: ListSortMenuProps) => JSX.Element;
 
-  abstract listFilterMenu: (props: ListFilterMenuProps<any>) => JSX.Element;
+  abstract listFilters: (props: ListRawFiltersProps) => JSX.Element;
+
+  abstract listObjectFilters: <T>(props: ListObjectFiltersProps<T>) => JSX.Element;
 
   abstract listElements: (props: ListElementsProps) => JSX.Element;
 

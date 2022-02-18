@@ -1,20 +1,20 @@
 import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
-import PageTitle from './layout/PageTitle';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
-import { Panel, PanelSeparator } from './layout/Panel';
-import FormField from './form/FormField';
-import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
-import InputText from './form/fields/InputText';
-import InputSelect from './form/fields/InputSelect';
-import { ListElements, ListSingleElement } from './list/ListElements';
-import StatusDot from './layout/StatusDot';
-import ListHeader from './list/ListHeader';
-import { PageBloc, PageBlocColumn } from './layout/PageBloc';
-import ListFilterMenu from './list/ListFilterMenu';
-import ListSortMenu from './list/ListSortMenu';
-import ListSearchBar from './list/ListSearchBar';
 import Drawer from './drawer/Drawer';
 import UncontrolledDrawer from './drawer/UncontrolledDrawer';
+import InputSelect from './form/fields/InputSelect';
+import InputText from './form/fields/InputText';
+import FormField from './form/FormField';
+import { PageBloc, PageBlocColumn } from './layout/PageBloc';
+import PageTitle from './layout/PageTitle';
+import { Panel, PanelSeparator } from './layout/Panel';
+import StatusDot from './layout/StatusDot';
+import { ListElements, ListSingleElement } from './list/ListElements';
+import ListFilters, { ListObjectFilters } from './list/ListFilters';
+import ListHeader from './list/ListHeader';
+import ListSearchBar from './list/ListSearchBar';
+import ListSortMenu from './list/ListSortMenu';
+import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
 
 export default class AdminTheme implements PlumeAdminTheme {
   pageTitle = PageTitle;
@@ -39,7 +39,9 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   listSortMenu = ListSortMenu;
 
-  listFilterMenu = ListFilterMenu;
+  listFilters = ListFilters;
+
+  listObjectFilters = ListObjectFilters;
 
   listElements = ListElements;
 
