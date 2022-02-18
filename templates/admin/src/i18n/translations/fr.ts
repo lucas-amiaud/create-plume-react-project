@@ -61,6 +61,10 @@ const frMessages: Translations = {
       'name_desc': 'Trier par ordre alphabétique descendant',
       'name_asc': 'Trier par ordre alphabétique ascendant',
     },
+    'logs-api': {
+      'date_desc': 'Trier du plus nouveau au plus ancien',
+      'date_asc': 'Trier du plus ancien au plus nouveau',
+    },
   },
   // filters wording
   'filter': {

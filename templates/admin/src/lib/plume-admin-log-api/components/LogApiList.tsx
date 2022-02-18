@@ -2,12 +2,13 @@ import { getGlobalInstance } from 'plume-ts-di';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MessageService from '../../../i18n/messages/MessageService';
-import { RawFilterProps } from '../../plume-admin-theme/list/ListProps';
+import { RawFilterProps, SortElementProps } from '../../plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import LogApiApi from '../api/LogApiApi';
 import { LogApiFilters, LogApiTrimmed } from '../api/LogApiTypes';
+import logsApiSortsList, { DATE_DESC } from '../pages/LogsApiSort';
 
 type Props = {
   logApiPath: string,
@@ -26,6 +27,9 @@ function LogApiList({ logApiPath }: Props) {
       .fetchAll({})
       .then(setLogsApi)
   );
+
+  // sorting
+  const [currentLogsApiSorting, setCurrentLogsApiSorting] = useState<SortElementProps>(DATE_DESC);
 
   // filters
   const [logsApiFilters, setLogsApiFilters] = useState<LogApiFilters>();
@@ -53,6 +57,10 @@ function LogApiList({ logApiPath }: Props) {
     fetchFilters();
   });
 
+  const sortedList = () => {
+    return logsApi?.sort(currentLogsApiSorting.sortFunction) || [];
+  }
+
   return (
     <>
       <theme.pageBloc>
@@ -66,14 +74,21 @@ function LogApiList({ logApiPath }: Props) {
           />
         </theme.pageBlocColumn>
         <theme.pageBlocColumn column="80">
-          {/*<theme.listHeader
+          <theme.listHeader
             listLength={logsApi?.length || 0}
-            sortConfiguration={{}}
-          />*/}
+            sortConfiguration={{
+              sortedObjectKey: 'logs-api',
+              sortPossibilities: logsApiSortsList(),
+              defaultSortPossibility: DATE_DESC,
+              onSort: (sortElement: SortElementProps) => {
+                setCurrentLogsApiSorting(sortElement);
+              },
+            }}
+          />
           <theme.listElements isLoading={logsApiLoader.isLoading} listLength={logsApi?.length || 0}>
             {
               React.Children.toArray(
-                logsApi?.map((logApi: LogApiTrimmed) => (
+                sortedList().map((logApi: LogApiTrimmed) => (
                     <div
                       onClick={() => {
                         history.push(`${logApiPath}/${logApi.id}`)

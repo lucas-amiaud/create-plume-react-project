@@ -63,6 +63,10 @@ export type Translations = {
       'name_desc': string,
       'name_asc': string,
     },
+    'logs-api': {
+      'date_desc': string,
+      'date_asc': string,
+    },
   }
   // filters wording
   'filter': {

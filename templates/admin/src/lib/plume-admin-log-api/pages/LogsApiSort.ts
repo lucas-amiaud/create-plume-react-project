@@ -9,6 +9,13 @@ export const DATE_DESC: SortElementProps = {
   }
 }
 
+export const DATE_ASC: SortElementProps = {
+  sortKey: 'DATE_ASC',
+  sortFunction: (a: LogApiTrimmed, b: LogApiTrimmed) => {
+    return dayjs(b.date).diff(dayjs(a.date));
+  }
+}
+
 export default function logsApiSortsList() {
-  return [DATE_DESC];
+  return [DATE_DESC, DATE_ASC];
 }

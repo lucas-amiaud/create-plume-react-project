@@ -61,6 +61,10 @@ const enMessages: Translations = {
       'name_desc': 'Sort by descendant alphabetical order',
       'name_asc': 'Sort by ascendant alphabetical order',
     },
+    'logs-api': {
+      'date_desc': 'Sort newest to oldest',
+      'date_asc': 'Sort oldest to newest',
+    },
   },
   // filters wording
   'filter': {
