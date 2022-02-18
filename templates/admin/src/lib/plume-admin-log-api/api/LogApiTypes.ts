@@ -44,3 +44,8 @@ export type LogApiParams = {
   startDate?: string,
   endDate?: string,
 }
+
+export type LogApiFilters = {
+  apiNames: string[],
+  statusCodes: number[],
+}

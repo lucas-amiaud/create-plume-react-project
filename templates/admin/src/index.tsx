@@ -1,20 +1,20 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import 'micro-observables/batchingForReactDom';
+import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { CssBaseline } from '@mui/material';
-import 'react-toastify/dist/ReactToastify.css';
-import 'micro-observables/batchingForReactDom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 import { Logger } from 'simple-logging-system';
-import { configureGlobalInjector, Injector } from 'plume-ts-di';
+import installApiModule from './api/api-module';
+import App from './components/App';
+import installComponentsModule from './components/components-module';
+import installI18nModule from './i18n/i18n-module';
+import installPlumeAdminLogApiModule from './lib/plume-admin-log-api/plume-admin-log-api-module';
+import installPlumeAdminUsersModule from './lib/plume-admin-users/plume-admin-users-module';
 import './polyfill-loader';
 import installServicesModule from './services/services-module';
-import installComponentsModule from './components/components-module';
-import App from './components/App';
-import installApiModule from './api/api-module';
 import SessionService from './services/session/SessionService';
-import installI18nModule from './i18n/i18n-module';
-import installPlumeAdminUsersModule from './lib/plume-admin-users/plume-admin-users-module';
 
 const currentMillis = Date.now();
 const logger = new Logger('index');
@@ -25,6 +25,7 @@ installComponentsModule(injector);
 installApiModule(injector);
 installI18nModule(injector);
 installPlumeAdminUsersModule(injector);
+installPlumeAdminLogApiModule(injector);
 
 injector.initializeSingletonInstances();
 

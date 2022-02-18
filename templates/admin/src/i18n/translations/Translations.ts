@@ -70,6 +70,11 @@ export type Translations = {
       'title': string,
       'name': string,
       'role': string,
+    },
+    'logs-api': {
+      'title': string,
+      'api_names': string,
+      'status_code': string,
     }
   }
   // sample with pluralization

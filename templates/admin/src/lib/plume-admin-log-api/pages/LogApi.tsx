@@ -6,7 +6,6 @@ import LogApiList from '../components/LogApiList';
 
 class LogApi {
   constructor(
-    private readonly logApiApi: LogApiApi,
     private readonly logApiDetails: LogApiDetails,
     ) {
   }
@@ -18,11 +17,9 @@ class LogApi {
       <div className="admin-page">
         <LogApiList
           logApiPath={path}
-          usersWithRoles={usersWithRoles}
-          isUsersLoading={userLoader.isLoading}
         />
         <Switch>
-          <Route path={`${path}/:userId`}>
+          <Route path={`${path}/:logApiId`}>
             <this.logApiDetails.render
               logApiPath={path}
             />

@@ -69,6 +69,11 @@ const frMessages: Translations = {
       'name': 'Nom',
       'role': 'Rôle',
     },
+    'logs-api': {
+      'title': 'Filtres',
+      'api_names': 'Nom de l\'API',
+      'status_code': 'Code de retour',
+    }
   },
   // sample with pluralization
   'clicks.count': (count: number) => `Il y a eu ${count} clic${count > 1 ? 's' : ''} !`,

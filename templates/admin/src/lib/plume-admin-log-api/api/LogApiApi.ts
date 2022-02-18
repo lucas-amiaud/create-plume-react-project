@@ -1,6 +1,6 @@
 import HttpMethod from '../../simple-http-request-builder/HttpMethod';
 import PlumeAdminHttpClient from '../../plume-admin-api/PlumeHttpClient';
-import { LogApiDetailsType, LogApiParams, LogApiTrimmed } from './LogApiTypes';
+import { LogApiDetailsType, LogApiFilters, LogApiParams, LogApiTrimmed } from './LogApiTypes';
 
 export default class LogApiApi {
   constructor(private readonly httpClient: PlumeAdminHttpClient) {
@@ -26,6 +26,13 @@ export default class LogApiApi {
     return this
       .httpClient
       .restRequest<LogApiDetailsType>(HttpMethod.GET, `/admin/logs/${idLog}`)
+      .execute();
+  }
+
+  fetchLogApiFilters() {
+    return this
+      .httpClient
+      .restRequest<LogApiFilters>(HttpMethod.GET, '/admin/logs-filters')
       .execute();
   }
 }

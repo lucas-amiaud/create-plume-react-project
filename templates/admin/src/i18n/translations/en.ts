@@ -68,6 +68,11 @@ const enMessages: Translations = {
       'title': 'Filters',
       'name': 'Name',
       'role': 'Role',
+    },
+    'logs-api': {
+      'title': 'Filters',
+      'api_names': 'API Name',
+      'status_code': 'Status code',
     }
   },
   // sample with pluralization
