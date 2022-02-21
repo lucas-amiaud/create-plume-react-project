@@ -2,8 +2,9 @@ import { getGlobalInstance } from 'plume-ts-di';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MessageService from '../../../i18n/messages/MessageService';
-import { RawFilterProps, SortElementProps } from '../../plume-admin-theme/list/ListProps';
+import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import { compare } from '../../plume-admin-users/utils/FilterUtils';
 import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import LogApiApi from '../api/LogApiApi';
@@ -28,51 +29,48 @@ function LogApiList({ logApiPath }: Props) {
       .then(setLogsApi)
   );
 
+  // search bar
+  const [currentSearchBarFilter, setCurrentSearchBarFilter] = useState<string>();
+
   // sorting
   const [currentLogsApiSorting, setCurrentLogsApiSorting] = useState<SortElementProps>(DATE_DESC);
 
   // filters
   const [logsApiFilters, setLogsApiFilters] = useState<LogApiFilters>();
-  const [currentLogsApiFilters, setCurrentLogsApiFilters] = useState<Map<string, string[]>>(new Map<string, string[]>());
   const logApiFiltersLoader = useLoader();
   const fetchFilters = () => logApiFiltersLoader.monitor(
     logApiApi.fetchLogApiFilters()
       .then(setLogsApiFilters)
   );
 
-  const filters = (): RawFilterProps[] => {
-    const apiNamesFilters: RawFilterProps = {
-      filterKey: 'api_names',
-      possibleValues: logsApiFilters?.apiNames || [],
-    };
-    const statusCodeFilters: RawFilterProps = {
-      filterKey: 'status_code',
-      possibleValues: logsApiFilters?.statusCodes.map(code => code.toString()) || [],
-    };
-    return [apiNamesFilters, statusCodeFilters];
-  }
-
   useOnComponentMounted(() => {
     fetchLogsApi();
     fetchFilters();
   });
 
+  const applySearchBarFilter = (logApi: LogApiTrimmed) => {
+    if (!currentSearchBarFilter || currentSearchBarFilter === '') {
+      return true;
+    }
+    return compare(logApi.url, currentSearchBarFilter);
+  }
+
   const sortedList = () => {
-    return logsApi?.sort(currentLogsApiSorting.sortFunction) || [];
+    return logsApi?.sort(currentLogsApiSorting.sortFunction).filter(applySearchBarFilter) || [];
   }
 
   return (
     <>
       <theme.pageBloc>
-        <theme.pageBlocColumn column="20">
-          <theme.listFilters
-            filterMenuKey="logs-api"
-            filters={filters()}
-            onFilterValueClicked={() => {
+        <theme.pageBlocColumn column="50">
+          <theme.listSearchBar
+            onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setCurrentSearchBarFilter(event.target.value);
             }}
-            selectedValues={currentLogsApiFilters}
           />
         </theme.pageBlocColumn>
+      </theme.pageBloc>
+      <theme.pageBloc>
         <theme.pageBlocColumn column="80">
           <theme.listHeader
             listLength={logsApi?.length || 0}
