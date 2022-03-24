@@ -109,7 +109,7 @@ export default class UsersEdit {
 
     const confirmDeleteUser = useConfirmation();
 
-    const tryDeleteUser = (idUser: string) => {
+    const deleteUser = (idUser: string) => {
       deletingLoader.monitor(this
         .userApi
         .delete(idUser)
@@ -296,7 +296,7 @@ export default class UsersEdit {
                   <this.theme.actionButton
                     iconName="delete"
                     style={ActionStyle.DANGER}
-                    onClick={confirmDeleteUser.handleConfirmation(() => tryDeleteUser(userId))}
+                    onClick={confirmDeleteUser.handleConfirmation(() => deleteUser(userId))}
                     isLoading={deletingLoader.isLoading}
                   >
                     {this.messages.t('action.delete')}
