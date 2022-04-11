@@ -47,7 +47,7 @@ export default function Drawer(
               cssClasses={ActionStyle.SECONDARY}
             >
               <Icon>chevron_left</Icon>
-              {messages['action.close']}
+              {messages.action.close}
             </ActionButton>
           </div>
           <div className="drawer-title-container">
