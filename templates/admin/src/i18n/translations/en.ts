@@ -83,6 +83,10 @@ const enMessages: Translations = {
       cancel: 'Cancel entry',
     }
   },
+  // logs api
+  logs_api: {
+    title_list: 'API calls List',
+  },
   // sorts wording
   'sort': {
     'user': {

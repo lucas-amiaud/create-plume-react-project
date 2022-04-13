@@ -61,6 +61,7 @@ function LogApiList({ logApiPath }: Props) {
 
   return (
     <>
+      <theme.pageTitle>{messages.logs_api.title_list}</theme.pageTitle>
       <theme.pageBloc>
         <theme.pageBlocColumn column="50">
           <theme.listSearchBar

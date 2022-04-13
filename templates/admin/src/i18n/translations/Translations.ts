@@ -84,6 +84,10 @@ export type Translations = {
       count: (count: number) => string,
     },
   },
+  // logs api
+  logs_api: {
+    title_list: string,
+  },
   // sorts wording
   'sort': {
     'user': {

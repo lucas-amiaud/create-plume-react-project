@@ -83,6 +83,10 @@ const frMessages: Translations = {
       count: (count: number) => 'Nombre d\'utilisateurs : ' + count,
     },
   },
+  // logs api
+  logs_api: {
+    title_list: 'Liste des appels API',
+  },
   // sorts wording
   'sort': {
     'user': {
