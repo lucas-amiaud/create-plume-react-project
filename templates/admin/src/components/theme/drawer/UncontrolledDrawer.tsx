@@ -13,13 +13,13 @@ function UncontrolledDrawer(
 ) {
   const theme = getGlobalInstance(PlumeAdminTheme);
   useOnDependenciesChange(() => {
-    setTimeout(toggleDrawerOpening, 0);
+    setTimeout(toggleDrawer, 0);
   }, []);
 
-  const [isDrawerOpened, toggleDrawerOpening] = useToggle(false);
+  const [isDrawerOpened, toggleDrawer] = useToggle(false);
 
   const uncontrolledClose = () => {
-    toggleDrawerOpening();
+    toggleDrawer();
     setTimeout(onClose, 300);
   };
 

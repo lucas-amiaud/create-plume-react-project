@@ -18,13 +18,14 @@ export default function Drawer(
   // Returns width percentage of drawer
   const drawerSize = () => {
     const defaultSize = 40;
+    const largeSize = 60;
     if (sizedByWidth) {
       const width = window.innerWidth;
       if (width < widthSmallScreen) {
         return 'full';
       }
 
-      return width < widthMediumScreen ? 60 : defaultSize;
+      return width < widthMediumScreen ? largeSize : defaultSize;
     }
 
     return size || defaultSize;
@@ -46,7 +47,7 @@ export default function Drawer(
               cssClasses={ActionStyle.SECONDARY}
             >
               <Icon>chevron_left</Icon>
-              {messages['action.close']}
+              {messages.action.close}
             </ActionButton>
           </div>
           <div className="drawer-title-container">

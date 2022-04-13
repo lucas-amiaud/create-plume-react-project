@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import MessageService from '../../../i18n/messages/MessageService';
 import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { compare } from '../../plume-admin-users/utils/FilterUtils';
+import { rawIncludes } from '../../../components/theme/utils/FilterUtils';
 import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import LogApiApi from '../api/LogApiApi';
@@ -52,7 +52,7 @@ function LogApiList({ logApiPath }: Props) {
     if (!currentSearchBarFilter || currentSearchBarFilter === '') {
       return true;
     }
-    return compare(logApi.url, currentSearchBarFilter);
+    return rawIncludes(logApi.url, currentSearchBarFilter);
   }
 
   const sortedList = () => {
@@ -75,7 +75,7 @@ function LogApiList({ logApiPath }: Props) {
           <theme.listHeader
             listLength={logsApi?.length || 0}
             sortConfiguration={{
-              sortedObjectKey: 'logs-api',
+              sortedObjectKey: 'logs_api',
               sortPossibilities: logsApiSortsList(),
               defaultSortPossibility: DATE_DESC,
               onSort: (sortElement: SortElementProps) => {

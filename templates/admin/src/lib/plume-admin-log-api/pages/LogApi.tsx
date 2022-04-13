@@ -4,9 +4,7 @@ import LogApiList from '../components/LogApiList';
 import LogApiDetails from './LogApiDetails';
 
 class LogApi {
-  constructor(
-    private readonly logApiDetails: LogApiDetails,
-    ) {
+  constructor(private readonly logApiDetails: LogApiDetails) {
   }
 
   render = () => {

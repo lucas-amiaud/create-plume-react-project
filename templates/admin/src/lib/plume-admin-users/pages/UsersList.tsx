@@ -7,10 +7,10 @@ import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UsersListResults from '../components/UsersListResults';
-import { checkValueForFilter, compare, filteredList } from '../utils/FilterUtils';
+import { checkValueForFilter, filteredList, rawIncludes } from '../../../components/theme/utils/FilterUtils';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import userFilters from './UserFilter';
-import userSortsList, { NAME_DESC } from './UserSort';
+import userSortsList, { NAME_ASC, NAME_DESC } from './UserSort';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -23,7 +23,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
   const theme = getGlobalInstance(PlumeAdminTheme);
   const history = useHistory();
 
-  const [currentSorting, setCurrentSorting] = useState<SortElementProps>(NAME_DESC);
+  const [currentSorting, setCurrentSorting] = useState<SortElementProps>(NAME_ASC);
   const [currentUserFilters, setCurrentUserFilters] = useState<Map<string, string[]>>(new Map<string, string[]>());
   const [currentSearchBarFilter, setCurrentSearchBarFilter] = useState<string>();
 
@@ -31,10 +31,10 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
     if (!currentSearchBarFilter || currentSearchBarFilter === "") {
       return true;
     }
-    return compare(user.lastName, currentSearchBarFilter)
-      || compare(user.firstName, currentSearchBarFilter)
-      || compare(user.userName, currentSearchBarFilter)
-      || compare(user.email, currentSearchBarFilter)
+    return rawIncludes(user.lastName, currentSearchBarFilter)
+      || rawIncludes(user.firstName, currentSearchBarFilter)
+      || rawIncludes(user.userName, currentSearchBarFilter)
+      || rawIncludes(user.email, currentSearchBarFilter)
   }
 
   const sortedAndFilteredList = () => {
@@ -50,7 +50,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
 
   return (
     <>
-      <theme.pageTitle>{messages['user.title-list']}</theme.pageTitle>
+      <theme.pageTitle>{messages.user.title_list}</theme.pageTitle>
       <theme.pageBloc>
         <theme.pageBlocColumn column="50">
           <theme.listSearchBar
@@ -68,7 +68,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
                 history.push(`${usersPath}/create`);
               }}
             >
-              {messages['user.add']}
+              {messages.user.add}
             </theme.actionButton>
           </theme.actionsContainer>
         </theme.pageBlocColumn>
