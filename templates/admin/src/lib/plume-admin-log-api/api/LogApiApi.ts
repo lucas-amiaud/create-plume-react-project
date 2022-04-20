@@ -1,4 +1,4 @@
-import HttpMethod from '../../simple-http-request-builder/HttpMethod';
+import { HttpMethod } from 'simple-http-request-builder';
 import PlumeAdminHttpClient from '../../plume-admin-api/PlumeHttpClient';
 import { LogApiDetailsType, LogApiFilters, LogApiParams, LogApiTrimmed } from './LogApiTypes';
 
