@@ -12,6 +12,8 @@ import {
 import {
   MultipleChoiceObjectFilterMenuProps,
   MultipleChoiceRawFilterMenuProps,
+  SingleChoiceObjectFilterMenuProps,
+  SingleChoiceRawFilterMenuProps,
 } from './list/filter/FilterProps';
 import {
   ListElementsProps,
@@ -41,6 +43,10 @@ export default abstract class PlumeAdminTheme {
   abstract multipleChoiceFilterMenu: (props: MultipleChoiceRawFilterMenuProps) => JSX.Element;
 
   abstract multipleChoiceObjectFilterMenu: <T>(props: MultipleChoiceObjectFilterMenuProps<T>) => JSX.Element;
+
+  abstract singleChoiceFilterMenu: (props: SingleChoiceRawFilterMenuProps) => JSX.Element;
+
+  abstract singleChoiceObjectFilterMenu: <T>(props: SingleChoiceObjectFilterMenuProps<T>) => JSX.Element;
 
   abstract listHeader: (props: ListHeaderProps) => JSX.Element;
 

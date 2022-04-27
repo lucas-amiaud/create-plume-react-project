@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
+import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import { LogApiTrimmed } from '../api/LogApiTypes';
 
 export const DATE_DESC: SortElementProps = {

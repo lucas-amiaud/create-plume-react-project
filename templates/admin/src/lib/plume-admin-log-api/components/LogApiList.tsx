@@ -1,16 +1,14 @@
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import ListSingleChoiceFilters from '../../../components/theme/list/ListSingleChoiceFilters';
+import { replaceValueForFilter } from '../../../components/theme/utils/FilterUtils';
 import MessageService from '../../../i18n/messages/MessageService';
-import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
+import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { checkValueForFilter, rawIncludes } from '../../../components/theme/utils/FilterUtils';
-import userFilters from '../../plume-admin-users/pages/UserFilter';
 import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import LogApiApi from '../api/LogApiApi';
-import { LogApiFilters, LogApiParams, LogApiTrimmed } from '../api/LogApiTypes';
+import { LogApiFilters, LogApiTrimmed } from '../api/LogApiTypes';
 import logsApiSortsList, { DATE_DESC } from '../pages/LogsApiSort';
 
 type Props = {
@@ -25,9 +23,14 @@ function LogApiList({ logApiPath }: Props) {
 
   const [logsApi, setLogsApi] = useState<LogApiTrimmed[]>();
   const logsApiLoader = useLoader();
-  const fetchLogsApi = (apiParam: LogApiParams) => logsApiLoader.monitor(
+  const fetchLogsApi = () => logsApiLoader.monitor(
     logApiApi
-      .fetchAll(apiParam)
+      .fetchAll({
+        method: selectedLogsApiFilters.get('method'),
+        statusCode: selectedLogsApiFilters.get('status_code'),
+        apiName: selectedLogsApiFilters.get('api_name'),
+        url: currentSearchBarFilter,
+      })
       .then(setLogsApi)
   );
 
@@ -47,28 +50,20 @@ function LogApiList({ logApiPath }: Props) {
   );
 
   useOnComponentMounted(() => {
-    fetchLogsApi({});
+    fetchLogsApi();
     fetchFilters();
   });
 
-  const applySearchBarFilter = (logApi: LogApiTrimmed) => {
-    if (!currentSearchBarFilter || currentSearchBarFilter === '') {
-      return true;
-    }
-    return rawIncludes(logApi.url, currentSearchBarFilter);
-  }
+  useEffect(() => {
+    fetchLogsApi();
+  }, [selectedLogsApiFilters, currentSearchBarFilter]);
 
-  const applyCheckboxesFilters = (newFilters: Map<string, string>) => {
-    setSelectedLogsApiFilters(newFilters);
-    fetchLogsApi({
-      method: selectedLogsApiFilters.get('method'),
-      statusCode: selectedLogsApiFilters.get('status_code'),
-      apiName: selectedLogsApiFilters.get('api_name'),
-    });
+  const applySearchBarFilter = (searchedText: string) => {
+    setCurrentSearchBarFilter(searchedText);
   }
 
   const sortedList = () => {
-    return logsApi?.sort(currentLogsApiSorting.sortFunction).filter(applySearchBarFilter) || [];
+    return logsApi?.sort(currentLogsApiSorting.sortFunction) || [];
   }
 
   return (
@@ -76,16 +71,16 @@ function LogApiList({ logApiPath }: Props) {
       <theme.pageTitle>{messages.logs_api.title_list}</theme.pageTitle>
       <theme.pageBloc>
         <theme.pageBlocColumn column="50">
-          <theme.listSearchBar
+          <theme.searchBar
             onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setCurrentSearchBarFilter(event.target.value);
+              applySearchBarFilter(event.target.value);
             }}
           />
         </theme.pageBlocColumn>
       </theme.pageBloc>
       <theme.pageBloc>
         <theme.pageBlocColumn column="20">
-          <ListSingleChoiceFilters
+          <theme.singleChoiceFilterMenu
             filterMenuKey="logs_api"
             filters={[
               {
@@ -101,14 +96,14 @@ function LogApiList({ logApiPath }: Props) {
                 possibleValues: [
                   'GET',
                   'POST',
-                  'PUT'
+                  'PUT',
+                  'PATCH',
+                  'DELETE',
                 ]
               }
             ]}
             onFilterValueClicked={(filterElementKey: string, valueSelected: string) => {
-              const clone: Map<string, string> = selectedLogsApiFilters;
-              clone.set(filterElementKey, valueSelected);
-              applyCheckboxesFilters(clone);
+              setSelectedLogsApiFilters(replaceValueForFilter(filterElementKey, valueSelected, selectedLogsApiFilters));
             }}
             selectedValues={selectedLogsApiFilters}
           />

@@ -1,15 +1,15 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../i18n/messages/MessageService';
+import MessageService from '../../../../i18n/messages/MessageService';
 import {
-  ListObjectFiltersProps,
   ObjectFilterProps,
-  RawFilterProps
-} from '../../../lib/plume-admin-theme/list/ListProps';
+  SingleChoiceObjectFilterMenuProps,
+  SingleChoiceRawFilterMenuProps
+} from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
 
 /**
- * ListObjectFilters generates filters for a give object type
+ * SingleObjectChoiceFilterMenu generates a single choice filter menu for a give object type
  * @param filterMenuKey the key in translation file to be used
  * @param onFilterValueClicked function executed when a checkbox is clicked
  * @param filters The filters for the given type.
@@ -19,14 +19,14 @@ import {
  * @param selectedValue the map of the current selected value by the key filter
  * @constructor
  */
-export function ObjectSingleChoiceFilterMenu<T>(
+export function SingleObjectChoiceFilterMenu<T>(
   {
     filterMenuKey,
     onFilterValueClicked,
     filters,
     rawList,
     selectedValues
-  }: ListObjectFiltersProps<T>
+  }: SingleChoiceObjectFilterMenuProps<T>
 ) {
   return (
     <SingleChoiceFilterMenu
@@ -45,23 +45,17 @@ export function ObjectSingleChoiceFilterMenu<T>(
 }
 
 /**
- * ListFilters is a generic component for filtering in a list
+ * SingleChoiceFilterMenu is a generic component for filtering in a list
  * @param filterMenuKey the key in translation file to be used
  * @param filters The filters to be displayed.
  *                Each filter must contain possible values
  *                Each filter must contain a key filter for identification
- * @param onFilterValueClicked function executed when a checkbox is clicked
+ * @param onFilterValueClicked function executed when a radio button is clicked
  * @param selectedValue the map of the current selected value by the key filter
  * @constructor
  */
-export function SingleChoiceFilterMenu(
-  { filterMenuKey, filters, onFilterValueClicked, selectedValues }:
-    {
-      filters: RawFilterProps[],
-      filterMenuKey: string,
-      onFilterValueClicked: (filterKey: string, valueSelected: string) => void,
-      selectedValues: Map<string, string>
-    }
+function SingleChoiceFilterMenu(
+  { filterMenuKey, filters, onFilterValueClicked, selectedValues }: SingleChoiceRawFilterMenuProps
 ) {
   const messages = getGlobalInstance(MessageService).t();
 
@@ -79,7 +73,7 @@ export function SingleChoiceFilterMenu(
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   onFilterValueClicked(filterPossibility.filterKey, e.target.value);
                 }}
-                value={selectedValues.get(filterPossibility.filterKey)}
+                value={selectedValues.get(filterPossibility.filterKey) || ''}
               >
                 {
                   Array.from(new Set<string>([...filterPossibility.possibleValues]))
@@ -103,3 +97,5 @@ export function SingleChoiceFilterMenu(
     </div>
   )
 }
+
+export default (SingleChoiceFilterMenu);

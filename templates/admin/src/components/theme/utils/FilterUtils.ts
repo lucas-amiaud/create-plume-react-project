@@ -31,6 +31,25 @@ export function checkValueForFilter(
 }
 
 /**
+ * This method returns the allFilters state after adding a value for a filterElementKey
+ * @param filterElementKey
+ * @param valueSelected
+ * @param allFilters
+ */
+export function replaceValueForFilter(
+  filterElementKey: string,
+  valueSelected: string,
+  allFilters: Map<string, string>,
+): Map<string, string> {
+  if (allFilters.get(filterElementKey) === valueSelected) {
+    return allFilters;
+  }
+  const clone: Map<string, string> = new Map<string, string>(allFilters);
+  clone.set(filterElementKey, valueSelected);
+  return clone;
+}
+
+/**
  * This methods checks if a filter has selected values to filter
  * @param currentFilters: the filters state
  */
