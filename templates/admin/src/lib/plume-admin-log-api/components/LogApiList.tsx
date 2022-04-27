@@ -1,14 +1,16 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import ListSingleChoiceFilters from '../../../components/theme/list/ListSingleChoiceFilters';
 import MessageService from '../../../i18n/messages/MessageService';
 import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { rawIncludes } from '../../../components/theme/utils/FilterUtils';
+import { checkValueForFilter, rawIncludes } from '../../../components/theme/utils/FilterUtils';
+import userFilters from '../../plume-admin-users/pages/UserFilter';
 import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import LogApiApi from '../api/LogApiApi';
-import { LogApiFilters, LogApiTrimmed } from '../api/LogApiTypes';
+import { LogApiFilters, LogApiParams, LogApiTrimmed } from '../api/LogApiTypes';
 import logsApiSortsList, { DATE_DESC } from '../pages/LogsApiSort';
 
 type Props = {
@@ -23,9 +25,9 @@ function LogApiList({ logApiPath }: Props) {
 
   const [logsApi, setLogsApi] = useState<LogApiTrimmed[]>();
   const logsApiLoader = useLoader();
-  const fetchLogsApi = () => logsApiLoader.monitor(
+  const fetchLogsApi = (apiParam: LogApiParams) => logsApiLoader.monitor(
     logApiApi
-      .fetchAll({})
+      .fetchAll(apiParam)
       .then(setLogsApi)
   );
 
@@ -36,6 +38,7 @@ function LogApiList({ logApiPath }: Props) {
   const [currentLogsApiSorting, setCurrentLogsApiSorting] = useState<SortElementProps>(DATE_DESC);
 
   // filters
+  const [selectedLogsApiFilters, setSelectedLogsApiFilters] = useState<Map<string, string>>(new Map<string, string>());
   const [logsApiFilters, setLogsApiFilters] = useState<LogApiFilters>();
   const logApiFiltersLoader = useLoader();
   const fetchFilters = () => logApiFiltersLoader.monitor(
@@ -44,7 +47,7 @@ function LogApiList({ logApiPath }: Props) {
   );
 
   useOnComponentMounted(() => {
-    fetchLogsApi();
+    fetchLogsApi({});
     fetchFilters();
   });
 
@@ -53,6 +56,15 @@ function LogApiList({ logApiPath }: Props) {
       return true;
     }
     return rawIncludes(logApi.url, currentSearchBarFilter);
+  }
+
+  const applyCheckboxesFilters = (newFilters: Map<string, string>) => {
+    setSelectedLogsApiFilters(newFilters);
+    fetchLogsApi({
+      method: selectedLogsApiFilters.get('method'),
+      statusCode: selectedLogsApiFilters.get('status_code'),
+      apiName: selectedLogsApiFilters.get('api_name'),
+    });
   }
 
   const sortedList = () => {
@@ -72,6 +84,35 @@ function LogApiList({ logApiPath }: Props) {
         </theme.pageBlocColumn>
       </theme.pageBloc>
       <theme.pageBloc>
+        <theme.pageBlocColumn column="20">
+          <ListSingleChoiceFilters
+            filterMenuKey="logs_api"
+            filters={[
+              {
+                filterKey: 'api_name',
+                possibleValues: logsApiFilters?.apiNames ?? []
+              },
+              {
+                filterKey: 'status_code',
+                possibleValues: logsApiFilters?.statusCodes?.map(status => status.toString()) ?? []
+              },
+              {
+                filterKey: 'method',
+                possibleValues: [
+                  'GET',
+                  'POST',
+                  'PUT'
+                ]
+              }
+            ]}
+            onFilterValueClicked={(filterElementKey: string, valueSelected: string) => {
+              const clone: Map<string, string> = selectedLogsApiFilters;
+              clone.set(filterElementKey, valueSelected);
+              applyCheckboxesFilters(clone);
+            }}
+            selectedValues={selectedLogsApiFilters}
+          />
+        </theme.pageBlocColumn>
         <theme.pageBlocColumn column="80">
           <theme.listHeader
             listLength={logsApi?.length || 0}

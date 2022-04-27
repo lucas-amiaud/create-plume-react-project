@@ -38,7 +38,7 @@ export type LogApiDetailsType = {
 export type LogApiParams = {
   limit?: number,
   method?: string,
-  statusCode?: number,
+  statusCode?: string,
   apiName?: string,
   url?: string,
   startDate?: string,

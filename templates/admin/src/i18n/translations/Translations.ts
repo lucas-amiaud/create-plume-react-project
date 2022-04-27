@@ -106,6 +106,11 @@ export type Translations = {
       'name': string,
       'role': string,
     },
+    logs_api: {
+      api_name: string,
+      status_code: string,
+      method: string,
+    }
   }
   // errors
   error: {

@@ -105,6 +105,11 @@ const enMessages: Translations = {
       'name': 'Name',
       'role': 'Role',
     },
+    logs_api: {
+      api_name: 'API Name',
+      status_code: 'Status code',
+      method: 'HTTP Method',
+    },
   },
   // errors
   error: {

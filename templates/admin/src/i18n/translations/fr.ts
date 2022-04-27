@@ -105,6 +105,11 @@ const frMessages: Translations = {
       'name': 'Nom',
       'role': 'Rôle',
     },
+    logs_api: {
+      api_name: 'Nom d\'API',
+      status_code: 'Code de retour',
+      method: 'Méthode HTTP',
+    },
   },
   // errors
   error: {
