@@ -111,7 +111,7 @@ function LogApiList({ logApiPath }: Props) {
         </theme.pageBlocColumn>
         <theme.pageBlocColumn column="80">
           <theme.listHeader
-            listLength={logsApi?.length || 0}
+            listTitle={messages.logs_api.list.count(logsApi?.length || 0)}
             sortConfiguration={{
               sortedObjectKey: 'logs_api',
               sortPossibilities: logsApiSortsList(),

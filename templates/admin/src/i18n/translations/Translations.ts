@@ -97,6 +97,9 @@ export type Translations = {
     body_response: string,
     header_request: string,
     header_response: string,
+    list: {
+      count: (count: number) => string,
+    },
   },
   // sorts wording
   'sort': {

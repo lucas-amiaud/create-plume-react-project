@@ -96,6 +96,9 @@ const enMessages: Translations = {
     body_response: 'Body response',
     header_request: 'Request headers',
     header_response: 'Response headers',
+    list: {
+      count: (count: number) => 'API logs count : ' + count,
+    },
   },
   // sorts wording
   'sort': {

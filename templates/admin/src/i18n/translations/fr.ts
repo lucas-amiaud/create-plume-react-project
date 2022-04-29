@@ -96,6 +96,9 @@ const frMessages: Translations = {
     body_response: 'Corps de la réponse',
     header_request: 'Entêtes de la requête',
     header_response: 'Entêtes de la réponse',
+    list: {
+      count: (count: number) => 'Nombre de logs API : ' + count,
+    },
   },
   // sorts wording
   'sort': {
