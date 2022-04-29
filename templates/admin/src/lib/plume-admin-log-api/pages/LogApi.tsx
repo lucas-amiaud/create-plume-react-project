@@ -9,7 +9,6 @@ class LogApi {
   constructor(
     private readonly theme: PlumeAdminTheme,
     private readonly messages: PlumeMessageResolver,
-    private readonly logApiDetails: LogApiDetails,
   ) {
   }
 
@@ -23,7 +22,7 @@ class LogApi {
         />
         <Switch>
           <Route path={`${path}/:logApiId`}>
-            <this.logApiDetails.render
+            <LogApiDetails
               logApiPath={path}
             />
           </Route>

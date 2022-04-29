@@ -86,6 +86,16 @@ const enMessages: Translations = {
   // logs api
   logs_api: {
     title_list: 'API calls List',
+    title_detail: (api: string) => api + ' API request details',
+    api: 'API',
+    url: 'URL',
+    date: 'Request date',
+    method: 'HTTP method',
+    status_code: 'Response code',
+    body_request: 'Body request',
+    body_response: 'Body response',
+    header_request: 'Request headers',
+    header_response: 'Response headers',
   },
   // sorts wording
   'sort': {

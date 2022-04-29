@@ -86,6 +86,16 @@ const frMessages: Translations = {
   // logs api
   logs_api: {
     title_list: 'Liste des appels API',
+    title_detail: (api: string) => 'Détails de l\'appel à l\'API ' + api,
+    api: 'API',
+    url: 'URL',
+    date: 'Date de l\'appel',
+    method: 'Méthode HTTP',
+    status_code: 'Code de retour',
+    body_request: 'Corps de la requête',
+    body_response: 'Corps de la réponse',
+    header_request: 'Entêtes de la requête',
+    header_response: 'Entêtes de la réponse',
   },
   // sorts wording
   'sort': {

@@ -87,6 +87,16 @@ export type Translations = {
   // logs api
   logs_api: {
     title_list: string,
+    title_detail: (api: string) => string,
+    api: string,
+    url: string,
+    date: string,
+    method: string,
+    status_code: string,
+    body_request: string,
+    body_response: string,
+    header_request: string,
+    header_response: string,
   },
   // sorts wording
   'sort': {

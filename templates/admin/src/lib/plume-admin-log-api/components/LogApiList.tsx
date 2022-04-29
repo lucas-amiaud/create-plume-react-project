@@ -10,6 +10,7 @@ import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import LogApiApi from '../api/LogApiApi';
 import { LogApiFilters, LogApiTrimmed } from '../api/LogApiTypes';
 import logsApiSortsList, { DATE_DESC } from '../pages/LogsApiSort';
+import LogApiTile from './LogApiTile';
 
 type Props = {
   logApiPath: string,
@@ -124,13 +125,12 @@ function LogApiList({ logApiPath }: Props) {
             {
               React.Children.toArray(
                 sortedList().map((logApi: LogApiTrimmed) => (
-                    <div
+                    <LogApiTile
+                      logApi={logApi}
                       onClick={() => {
                         history.push(`${logApiPath}/${logApi.id}`)
                       }}
-                    >
-                      {logApi.url}
-                    </div>
+                    />
                   )
                 )
               )
