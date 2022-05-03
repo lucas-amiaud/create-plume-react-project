@@ -1,5 +1,7 @@
+import dayjs, { Dayjs } from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { replaceValueForFilter } from '../../../components/theme/utils/FilterUtils';
 import MessageService from '../../../i18n/messages/MessageService';
@@ -10,6 +12,7 @@ import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import LogApiApi from '../api/LogApiApi';
 import { LogApiFilters, LogApiTrimmed } from '../api/LogApiTypes';
 import logsApiSortsList, { DATE_DESC } from '../pages/LogsApiSort';
+import LogApiRangeSelector from './LogApiRangeSelector';
 import LogApiTile from './LogApiTile';
 
 type Props = {
@@ -31,6 +34,8 @@ function LogApiList({ logApiPath }: Props) {
         statusCode: selectedLogsApiFilters.get('status_code'),
         apiName: selectedLogsApiFilters.get('api_name'),
         url: currentSearchBarFilter,
+        startDate: selectedStartDate?.startOf('day').toISOString(),
+        endDate: selectedEndDate?.endOf('day').toISOString(),
       })
       .then(setLogsApi)
   );
@@ -42,6 +47,8 @@ function LogApiList({ logApiPath }: Props) {
   const [currentLogsApiSorting, setCurrentLogsApiSorting] = useState<SortElementProps>(DATE_DESC);
 
   // filters
+  const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>();
+  const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>();
   const [selectedLogsApiFilters, setSelectedLogsApiFilters] = useState<Map<string, string>>(new Map<string, string>());
   const [logsApiFilters, setLogsApiFilters] = useState<LogApiFilters>();
   const logApiFiltersLoader = useLoader();
@@ -57,11 +64,7 @@ function LogApiList({ logApiPath }: Props) {
 
   useEffect(() => {
     fetchLogsApi();
-  }, [selectedLogsApiFilters, currentSearchBarFilter]);
-
-  const applySearchBarFilter = (searchedText: string) => {
-    setCurrentSearchBarFilter(searchedText);
-  }
+  }, [selectedLogsApiFilters, currentSearchBarFilter, selectedStartDate, selectedEndDate]);
 
   const sortedList = () => {
     return logsApi?.sort(currentLogsApiSorting.sortFunction) || [];
@@ -74,7 +77,19 @@ function LogApiList({ logApiPath }: Props) {
         <theme.pageBlocColumn column="50">
           <theme.searchBar
             onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
-              applySearchBarFilter(event.target.value);
+              setCurrentSearchBarFilter(event.target.value);
+            }}
+          />
+        </theme.pageBlocColumn>
+      </theme.pageBloc>
+      <theme.pageBloc>
+        <theme.pageBlocColumn column="50">
+          <LogApiRangeSelector
+            onStartDateChange={(date: Dayjs | null) => {
+              setSelectedStartDate(date);
+            }}
+            onEndDateChange={(date: Dayjs | null) => {
+              setSelectedEndDate(date);
             }}
           />
         </theme.pageBlocColumn>
@@ -90,7 +105,7 @@ function LogApiList({ logApiPath }: Props) {
               },
               {
                 filterKey: 'status_code',
-                possibleValues: logsApiFilters?.statusCodes?.map(status => status.toString()) ?? []
+                possibleValues: logsApiFilters?.statusCodes?.map((status: number) => status.toString()) ?? []
               },
               {
                 filterKey: 'method',

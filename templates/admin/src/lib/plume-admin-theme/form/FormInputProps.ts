@@ -1,3 +1,5 @@
+import { DateRange } from '@mui/lab';
+import { Dayjs } from 'dayjs';
 import { FocusEventHandler } from 'react';
 import { Control } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
@@ -41,4 +43,17 @@ export type InputSelectProps = {
 export type SelectOptionProps = {
   label: string,
   value: any,
-}
+};
+
+type GenericInputDateProps = {
+  locale: string,
+  disableOpenPicker?: boolean,
+} & InputTextProps;
+
+export type InputDateProps = {
+  onDateChange?: (value: Dayjs) => void,
+} & GenericInputDateProps;
+
+export type InputDateRangeProps = {
+  onDateChange?: (values: DateRange<Dayjs>) => void,
+} & GenericInputDateProps;

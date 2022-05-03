@@ -1,7 +1,12 @@
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
 import { DrawerTypeProps, UncontrolledDrawerTypeProps } from './drawer/DrawerProps';
 import { FormFieldProps } from './form/FormFieldProps';
-import { InputSelectProps, InputTextProps } from './form/FormInputProps';
+import {
+  InputDateProps,
+  InputDateRangeProps,
+  InputSelectProps,
+  InputTextProps
+} from './form/FormInputProps';
 import {
   LayoutPageBlocColumnProps,
   LayoutPageBlocProps,
@@ -80,4 +85,8 @@ export default abstract class PlumeAdminTheme {
   abstract inputText: (props: InputTextProps) => JSX.Element;
 
   abstract inputSelect: (props: InputSelectProps) => JSX.Element;
+
+  abstract inputDate: (props: InputDateProps) => JSX.Element;
+
+  abstract inputDateRange: (props: InputDateRangeProps) => JSX.Element;
 }

@@ -48,6 +48,13 @@ const frMessages: Translations = {
     settings: 'Paramètres',
     log_api: 'API Logs',
   },
+  //format
+  format : {
+    date: 'DD/MM/YYYY',
+    date_mask: '__/__/____',
+    hour: 'hh:mm',
+    date_hour: 'DD/MM/YYYY hh:mm',
+  },
   // home
   home: {
     title: 'Page d\'accueil',

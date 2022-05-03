@@ -48,6 +48,13 @@ const enMessages: Translations = {
     settings: 'Paramètres',
     log_api: 'API Logs',
   },
+  //format
+  format : {
+    date: 'YYYY-MM-DD',
+    date_mask: '____-__-__',
+    hour: 'hh:mm a',
+    date_hour: 'YYYY-MM-DD hh:mm a',
+  },
   // home
   home: {
     title: 'Home page',

@@ -49,6 +49,13 @@ export type Translations = {
     settings: string,
     log_api: string,
   },
+  //format
+  format : {
+    date: string,
+    date_mask: string,
+    hour: string,
+    date_hour: string,
+  },
   // home
   home: {
     title: string,

@@ -17,6 +17,7 @@ $log-api-error: #f93e3e;
 
   .log-api-data {
     height: 100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -32,6 +33,9 @@ $log-api-error: #f93e3e;
       justify-content: center;
       padding: 0 $spacer-2;
       margin-left: $spacer-3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       &--large {
         width: 40%;

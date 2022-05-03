@@ -2,6 +2,8 @@ import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import Drawer from './drawer/Drawer';
 import UncontrolledDrawer from './drawer/UncontrolledDrawer';
+import InputDatePicker from './form/fields/InputDatePicker';
+import InputDateRangePicker from './form/fields/InputDateRangePicker';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
 import FormField from './form/FormField';
@@ -67,4 +69,8 @@ export default class AdminTheme implements PlumeAdminTheme {
   inputText = InputText;
 
   inputSelect = InputSelect;
+
+  inputDate = InputDatePicker;
+
+  inputDateRange = InputDateRangePicker;
 }
