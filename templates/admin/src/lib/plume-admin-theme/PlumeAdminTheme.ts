@@ -18,8 +18,8 @@ import {
   ListHeaderProps,
   ListSingleElementProps,
 } from './list/ListProps';
-import { SortMenuProps } from './list/sort/SortProps'
-import { SearchBarProps } from './list/search/SearchProps'
+import { SortMenuProps } from './list/sort/SortProps';
+import { SearchBarProps } from './list/search/SearchProps';
 import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
