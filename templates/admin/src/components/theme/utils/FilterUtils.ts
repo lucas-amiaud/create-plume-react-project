@@ -12,7 +12,7 @@ export function checkValueForFilter(
   filterElementKey: string,
   newValue: string,
   isChecked: boolean,
-  allValues: Map<string, string[]>
+  allValues: Map<string, string[]>,
 ): Map<string, string[]> {
   const currentFiltersClone: Map<string, string[]> = new Map<string, string[]>(allValues);
   let currentFiltersForKey = currentFiltersClone.get(filterElementKey);
@@ -58,8 +58,8 @@ function hasSelectedValues(currentFilters: Map<string, string[]>): boolean {
     return false;
   }
   let hasValues = false;
-  currentFilters.forEach(value => {
-    hasValues = hasValues || value.length > 0
+  currentFilters.forEach((value: string[]) => {
+    hasValues = hasValues || value.length > 0;
   });
   return hasValues;
 }
@@ -75,7 +75,7 @@ function applyFilter<T>(listToFilter: T[], filter: ObjectFilterProps<T>, selecte
     return listToFilter;
   }
   return listToFilter
-    .filter(value => selectedValues.includes(filter.keyExtractor(value)));
+    .filter((value: T) => selectedValues.includes(filter.keyExtractor(value)));
 }
 
 /**
@@ -87,7 +87,7 @@ function applyFilter<T>(listToFilter: T[], filter: ObjectFilterProps<T>, selecte
 export function filteredList<T>(
   rawList: T[],
   currentFilters: Map<string, string[]>,
-  declaredFilters: ObjectFilterProps<T>[]
+  declaredFilters: ObjectFilterProps<T>[],
 ): T[] {
   if (!hasSelectedValues(currentFilters)) {
     // if no filters are selected, then we return the whole list

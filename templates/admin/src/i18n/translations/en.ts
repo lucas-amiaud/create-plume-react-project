@@ -24,7 +24,7 @@ const enMessages: Translations = {
     },
     apple: {
       authenticate: 'Log in with Apple',
-    }
+    },
   },
   // common labels
   label: {
@@ -48,8 +48,8 @@ const enMessages: Translations = {
     settings: 'Paramètres',
     log_api: 'API Logs',
   },
-  //format
-  format : {
+  // format
+  format: {
     date: 'YYYY-MM-DD',
     date_mask: '____-__-__',
     hour: 'hh:mm a',
@@ -65,7 +65,7 @@ const enMessages: Translations = {
     title: 'Please authenticate',
     actions: {
       forgot: 'I forget my password',
-    }
+    },
   },
   // users
   users: {
@@ -85,17 +85,17 @@ const enMessages: Translations = {
     add: 'Add user',
     error_passwords_different: 'Password do not match its confirmation',
     list: {
-      count: (count: number) => 'User count : ' + count,
+      count: (count: number) => `User count : ${count}`,
     },
     popin: {
       title_delete: 'Delete user',
       cancel: 'Cancel entry',
-    }
+    },
   },
   // logs api
   logs_api: {
     title_list: 'API calls List',
-    title_detail: (api: string) => api + ' API request details',
+    title_detail: (api: string) => `${api} API request details`,
     api: 'API',
     url: 'URL',
     date: 'Request date',
@@ -106,14 +106,14 @@ const enMessages: Translations = {
     header_request: 'Request headers',
     header_response: 'Response headers',
     list: {
-      count: (count: number) => 'API logs count : ' + count,
+      count: (count: number) => `API logs count : ${count}`,
     },
   },
   // sorts wording
-  'sort': {
-    'user': {
-      'name_desc': 'Sort by descendant alphabetical order',
-      'name_asc': 'Sort by ascendant alphabetical order',
+  sort: {
+    user: {
+      name_desc: 'Sort by descendant alphabetical order',
+      name_asc: 'Sort by ascendant alphabetical order',
     },
     logs_api: {
       date_desc: 'Sort newest to oldest',
@@ -121,11 +121,11 @@ const enMessages: Translations = {
     },
   },
   // filters wording
-  'filter': {
-    'user': {
-      'title': 'Filters',
-      'name': 'Name',
-      'role': 'Role',
+  filter: {
+    user: {
+      title: 'Filters',
+      name: 'Name',
+      role: 'Role',
     },
     logs_api: {
       api_name: 'API Name',
@@ -138,7 +138,7 @@ const enMessages: Translations = {
     field: {
       required: 'Field is required',
       email_wrong_format: 'The input email address is invalid',
-    }
+    },
   },
   'http-errors': {
     INTERNAL_ERROR: 'An unexpected error occurred',
