@@ -2,6 +2,7 @@ import { DateTimePicker, LocalizationProvider } from '@mui/lab';
 import DateAdapter from '@mui/lab/AdapterDayjs';
 import { MuiTextFieldProps } from '@mui/lab/internal/pickers/PureDateInput';
 import { TextField } from '@mui/material';
+import { Dayjs } from 'dayjs';
 import React from 'react';
 import { useController } from 'react-hook-form';
 import en from '../../../../i18n/translations/en';
@@ -41,9 +42,9 @@ function InputDatePicker(
     defaultValue: defaultValue || null,
   });
 
-  const onChangeCombined = (value: any) => {
+  const onChangeCombined = (value: Dayjs | null) => {
     field.onChange(value);
-    if (onDateChange) {
+    if (value && onDateChange) {
       onDateChange(value);
     }
   };

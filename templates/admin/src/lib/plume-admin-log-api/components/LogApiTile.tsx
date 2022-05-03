@@ -8,7 +8,8 @@ import { LogApiTrimmed } from '../api/LogApiTypes';
 type Props = {
   logApi: LogApiTrimmed,
   onClick: () => void,
-}
+};
+
 export default function LogApiTile({ logApi, onClick }: Props) {
   const theme = getGlobalInstance(PlumeAdminTheme);
 
@@ -20,7 +21,7 @@ export default function LogApiTile({ logApi, onClick }: Props) {
       return Status.WARN;
     }
     return Status.OK;
-  }
+  };
 
   return (
     <theme.listSingleElement
@@ -48,5 +49,5 @@ export default function LogApiTile({ logApi, onClick }: Props) {
         </div>
       </div>
     </theme.listSingleElement>
-  )
+  );
 }

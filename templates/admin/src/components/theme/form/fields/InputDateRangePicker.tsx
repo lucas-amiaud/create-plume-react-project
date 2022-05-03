@@ -20,12 +20,11 @@ function InputDateRangePicker(
     rules,
     disabled,
     defaultValue,
-    onBlur,
     locale,
     onDateChange,
     showTodayButton,
     disableFuture,
-  }: InputDateRangeProps
+  }: InputDateRangeProps,
 ) {
   const fieldId: string = (useNameAsId ? name : (id ?? name)) || '';
 
@@ -35,13 +34,6 @@ function InputDateRangePicker(
     rules,
     defaultValue: defaultValue || [],
   });
-
-  const onBlurCombined = (value: any) => {
-    field.onBlur();
-    if (onBlur) {
-      onBlur(value);
-    }
-  };
 
   const onCustomChange = (val: DateRange<Dayjs>, keyboardInputValue?: string) => {
     // Update the date when it has been updated using the datepicker and not the text fields
@@ -82,7 +74,6 @@ function InputDateRangePicker(
               name={name}
               id={fieldId}
               disabled={disabled ?? false}
-              onBlur={onBlurCombined}
             />
             <Icon>arrow_forward</Icon>
             <TextField
@@ -92,7 +83,6 @@ function InputDateRangePicker(
               name={name}
               id={fieldId}
               disabled={disabled ?? false}
-              onBlur={onBlurCombined}
             />
           </>
         )}

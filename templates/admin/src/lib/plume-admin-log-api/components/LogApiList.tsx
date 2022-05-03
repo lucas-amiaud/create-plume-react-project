@@ -1,7 +1,6 @@
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { replaceValueForFilter } from '../../../components/theme/utils/FilterUtils';
 import MessageService from '../../../i18n/messages/MessageService';
@@ -17,28 +16,13 @@ import LogApiTile from './LogApiTile';
 
 type Props = {
   logApiPath: string,
-}
+};
 
 function LogApiList({ logApiPath }: Props) {
   const messages = getGlobalInstance(MessageService).t();
   const theme = getGlobalInstance(PlumeAdminTheme);
   const logApiApi = getGlobalInstance(LogApiApi);
   const history = useHistory();
-
-  const [logsApi, setLogsApi] = useState<LogApiTrimmed[]>();
-  const logsApiLoader = useLoader();
-  const fetchLogsApi = () => logsApiLoader.monitor(
-    logApiApi
-      .fetchAll({
-        method: selectedLogsApiFilters.get('method'),
-        statusCode: selectedLogsApiFilters.get('status_code'),
-        apiName: selectedLogsApiFilters.get('api_name'),
-        url: currentSearchBarFilter,
-        startDate: selectedStartDate?.startOf('day').toISOString(),
-        endDate: selectedEndDate?.endOf('day').toISOString(),
-      })
-      .then(setLogsApi)
-  );
 
   // search bar
   const [currentSearchBarFilter, setCurrentSearchBarFilter] = useState<string>();
@@ -54,7 +38,22 @@ function LogApiList({ logApiPath }: Props) {
   const logApiFiltersLoader = useLoader();
   const fetchFilters = () => logApiFiltersLoader.monitor(
     logApiApi.fetchLogApiFilters()
-      .then(setLogsApiFilters)
+      .then(setLogsApiFilters),
+  );
+
+  const [logsApi, setLogsApi] = useState<LogApiTrimmed[]>();
+  const logsApiLoader = useLoader();
+  const fetchLogsApi = () => logsApiLoader.monitor(
+    logApiApi
+      .fetchAll({
+        method: selectedLogsApiFilters.get('method'),
+        statusCode: selectedLogsApiFilters.get('status_code'),
+        apiName: selectedLogsApiFilters.get('api_name'),
+        url: currentSearchBarFilter,
+        startDate: selectedStartDate?.startOf('day').toISOString(),
+        endDate: selectedEndDate?.endOf('day').toISOString(),
+      })
+      .then(setLogsApi),
   );
 
   useOnComponentMounted(() => {
@@ -66,9 +65,7 @@ function LogApiList({ logApiPath }: Props) {
     fetchLogsApi();
   }, [selectedLogsApiFilters, currentSearchBarFilter, selectedStartDate, selectedEndDate]);
 
-  const sortedList = () => {
-    return logsApi?.sort(currentLogsApiSorting.sortFunction) || [];
-  }
+  const sortedList = () => logsApi?.sort(currentLogsApiSorting.sortFunction) || [];
 
   return (
     <>
@@ -101,11 +98,11 @@ function LogApiList({ logApiPath }: Props) {
             filters={[
               {
                 filterKey: 'api_name',
-                possibleValues: logsApiFilters?.apiNames ?? []
+                possibleValues: logsApiFilters?.apiNames ?? [],
               },
               {
                 filterKey: 'status_code',
-                possibleValues: logsApiFilters?.statusCodes?.map((status: number) => status.toString()) ?? []
+                possibleValues: logsApiFilters?.statusCodes?.map((status: number) => status.toString()) ?? [],
               },
               {
                 filterKey: 'method',
@@ -115,8 +112,8 @@ function LogApiList({ logApiPath }: Props) {
                   'PUT',
                   'PATCH',
                   'DELETE',
-                ]
-              }
+                ],
+              },
             ]}
             onFilterValueClicked={(filterElementKey: string, valueSelected: string) => {
               setSelectedLogsApiFilters(replaceValueForFilter(filterElementKey, valueSelected, selectedLogsApiFilters));
@@ -140,14 +137,13 @@ function LogApiList({ logApiPath }: Props) {
             {
               React.Children.toArray(
                 sortedList().map((logApi: LogApiTrimmed) => (
-                    <LogApiTile
-                      logApi={logApi}
-                      onClick={() => {
-                        history.push(`${logApiPath}/${logApi.id}`)
-                      }}
-                    />
-                  )
-                )
+                  <LogApiTile
+                    logApi={logApi}
+                    onClick={() => {
+                      history.push(`${logApiPath}/${logApi.id}`);
+                    }}
+                  />
+                )),
               )
             }
           </theme.listElements>

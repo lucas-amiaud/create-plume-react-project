@@ -10,22 +10,23 @@ import useDebounce from '../../react-hook-debounce/ReactHookDebounce';
 type Props = {
   onStartDateChange: (date: Dayjs | null) => void,
   onEndDateChange: (date: Dayjs | null) => void,
-}
+};
 
 function LogApiRangeSelector({ onStartDateChange, onEndDateChange }: Props) {
   const localeService = getGlobalInstance(LocaleService);
   const theme = getGlobalInstance(PlumeAdminTheme);
   const [dateRange, setDateRange] = useState<DateRange<Dayjs>>();
 
-  useDebounce(() => {
+  useDebounce(
+    () => {
       if (dateRange) {
         onStartDateChange(dateRange[0]);
         onEndDateChange(dateRange[1]);
       }
     },
     1500,
-    [dateRange]
-  )
+    [dateRange],
+  );
 
   const {
     control,
@@ -39,7 +40,7 @@ function LogApiRangeSelector({ onStartDateChange, onEndDateChange }: Props) {
       onDateChange={setDateRange}
       disableFuture
     />
-  )
+  );
 }
 
 export default (LogApiRangeSelector);

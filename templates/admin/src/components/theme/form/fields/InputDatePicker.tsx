@@ -1,3 +1,4 @@
+import { Dayjs } from 'dayjs';
 import React from 'react';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import DateAdapter from '@mui/lab/AdapterDayjs';
@@ -8,7 +9,7 @@ import en from '../../../../i18n/translations/en';
 import fr from '../../../../i18n/translations/fr';
 import { Translations } from '../../../../i18n/translations/Translations';
 import {
-  InputDateProps
+  InputDateProps,
 } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
 function InputDatePicker(
@@ -43,9 +44,9 @@ function InputDatePicker(
     defaultValue: defaultValue || null,
   });
 
-  const onChangeCombined = (value: any) => {
+  const onChangeCombined = (value: Dayjs | null) => {
     field.onChange(value);
-    if (onDateChange) {
+    if (value && onDateChange) {
       onDateChange(value);
     }
   };

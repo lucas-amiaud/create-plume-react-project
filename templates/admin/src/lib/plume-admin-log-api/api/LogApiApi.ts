@@ -1,6 +1,8 @@
 import { HttpMethod } from 'simple-http-request-builder';
 import PlumeAdminHttpClient from '../../plume-admin-api/PlumeHttpClient';
-import { LogApiDetailsType, LogApiFilters, LogApiParams, LogApiTrimmed } from './LogApiTypes';
+import {
+  LogApiDetailsType, LogApiFilters, LogApiParams, LogApiTrimmed,
+} from './LogApiTypes';
 
 export default class LogApiApi {
   constructor(private readonly httpClient: PlumeAdminHttpClient) {
@@ -17,7 +19,7 @@ export default class LogApiApi {
         ['apiName', apiParam.apiName || ''],
         ['url', apiParam.url || ''],
         ['startDate', apiParam.startDate || ''],
-        ['endDate', apiParam.endDate || '']
+        ['endDate', apiParam.endDate || ''],
       ])
       .execute();
   }

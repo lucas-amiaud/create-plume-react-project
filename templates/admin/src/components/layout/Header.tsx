@@ -1,13 +1,13 @@
-import React from 'react';
-import { getGlobalInstance } from 'plume-ts-di';
 import { MenuItem } from '@mui/material';
+import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
 import LocaleService from '../../i18n/locale/LocaleService';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
-import { User } from '../../services/session/User';
-import LocaleSelector from '../theme/LocaleSelector';
-import SessionService from '../../services/session/SessionService';
 import MessageService from '../../i18n/messages/MessageService';
+import { Locale } from '../../lib/locale-resolver/LocaleResolver';
+import SessionService from '../../services/session/SessionService';
+import { User } from '../../services/session/User';
 import DropdownMenu from '../theme/DropdownMenu';
+import LocaleSelector from '../theme/LocaleSelector';
 
 type HeaderProps = {
   currentLocale: Locale;
@@ -38,16 +38,16 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
             onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
           />
         </div>
-          <div className="header_action header_action--circle">
-            <DropdownMenu label={getInitialLettersOfUser()} id="user-menu">
-              <div id="user-name">{currentUser.fullName}</div>
-              <MenuItem
-                onClick={() => sessionService.disconnect()}
-              >
-                {messages.action.disconnect}
-              </MenuItem>
-            </DropdownMenu>
-          </div>
+        <div className="header_action header_action--circle">
+          <DropdownMenu label={getInitialLettersOfUser()} id="user-menu">
+            <div id="user-name">{currentUser.fullName}</div>
+            <MenuItem
+              onClick={() => sessionService.disconnect()}
+            >
+              {messages.action.disconnect}
+            </MenuItem>
+          </DropdownMenu>
+        </div>
       </div>
     </header>
   );

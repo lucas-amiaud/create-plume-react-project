@@ -68,7 +68,7 @@ function LogApiDetails({ logApiPath }: Props) {
         && logApiDetail
         && (
           <theme.pageBloc>
-            <form onSubmit={console.log}>
+            <form onSubmit={() => {}}>
               <input type="hidden" name="id" value={logApiDetail.id} />
               <theme.formField
                 inputId="api"
