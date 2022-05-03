@@ -22,7 +22,9 @@ function InputDateRangePicker(
     defaultValue,
     onBlur,
     locale,
-    onDateChange
+    onDateChange,
+    showTodayButton,
+    disableFuture,
   }: InputDateRangeProps
 ) {
   const fieldId: string = (useNameAsId ? name : (id ?? name)) || '';
@@ -61,30 +63,33 @@ function InputDateRangePicker(
   return (
     <LocalizationProvider dateAdapter={DateAdapter} locale={currentLocale}>
       <DateRangePicker
-        toolbarTitle="Sélectionner une période"
         startText="Debut"
         endText="Fin"
         value={field.value}
+        mask={currentLocale.format.date_mask}
+        inputFormat={currentLocale.format.date}
+        showTodayButton={showTodayButton ?? false}
+        disableFuture={disableFuture ?? false}
         onChange={(date: DateRange<Dayjs>, keyboardInputValue?: string) => {
           onCustomChange(date, keyboardInputValue);
         }}
         renderInput={(startProps: MuiTextFieldProps, endProps: MuiTextFieldProps) => (
           <>
             <TextField
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...startProps}
               type="date"
               name={name}
-              variant="filled"
               id={fieldId}
               disabled={disabled ?? false}
               onBlur={onBlurCombined}
             />
             <Icon>arrow_forward</Icon>
             <TextField
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...endProps}
               type="date"
               name={name}
-              variant="filled"
               id={fieldId}
               disabled={disabled ?? false}
               onBlur={onBlurCombined}

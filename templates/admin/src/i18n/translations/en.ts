@@ -53,7 +53,9 @@ const enMessages: Translations = {
     date: 'YYYY-MM-DD',
     date_mask: '____-__-__',
     hour: 'hh:mm a',
+    hour_mask: '__:__ _M',
     date_hour: 'YYYY-MM-DD hh:mm a',
+    date_hour_mask: '____-__-__ __:__ _M',
   },
   // home
   home: {

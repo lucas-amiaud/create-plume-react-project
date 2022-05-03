@@ -3,6 +3,7 @@ import { Dayjs } from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import LocaleService from '../../../i18n/locale/LocaleService';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import useDebounce from '../../react-hook-debounce/ReactHookDebounce';
 
@@ -12,6 +13,7 @@ type Props = {
 }
 
 function LogApiRangeSelector({ onStartDateChange, onEndDateChange }: Props) {
+  const localeService = getGlobalInstance(LocaleService);
   const theme = getGlobalInstance(PlumeAdminTheme);
   const [dateRange, setDateRange] = useState<DateRange<Dayjs>>();
 
@@ -32,9 +34,10 @@ function LogApiRangeSelector({ onStartDateChange, onEndDateChange }: Props) {
   return (
     <theme.inputDateRange
       name="dateRange"
-      locale={'fr'}
+      locale={localeService.getCurrentLocale().get().code}
       control={control}
       onDateChange={setDateRange}
+      disableFuture
     />
   )
 }

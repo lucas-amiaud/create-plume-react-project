@@ -48,6 +48,8 @@ export type SelectOptionProps = {
 type GenericInputDateProps = {
   locale: string,
   disableOpenPicker?: boolean,
+  disableFuture?: boolean,
+  showTodayButton?: boolean,
 } & InputTextProps;
 
 export type InputDateProps = {

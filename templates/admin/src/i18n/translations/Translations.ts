@@ -54,7 +54,9 @@ export type Translations = {
     date: string,
     date_mask: string,
     hour: string,
+    hour_mask: string,
     date_hour: string,
+    date_hour_mask: string,
   },
   // home
   home: {

@@ -1,15 +1,13 @@
-import React from 'react';
-import { DatePicker, LocalizationProvider } from '@mui/lab';
+import { DateTimePicker, LocalizationProvider } from '@mui/lab';
 import DateAdapter from '@mui/lab/AdapterDayjs';
 import { MuiTextFieldProps } from '@mui/lab/internal/pickers/PureDateInput';
 import { TextField } from '@mui/material';
+import React from 'react';
 import { useController } from 'react-hook-form';
 import en from '../../../../i18n/translations/en';
 import fr from '../../../../i18n/translations/fr';
 import { Translations } from '../../../../i18n/translations/Translations';
-import {
-  InputDateProps
-} from '../../../../lib/plume-admin-theme/form/FormInputProps';
+import { InputDateProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
 function InputDatePicker(
   {
@@ -24,8 +22,8 @@ function InputDatePicker(
     defaultValue,
     onDateChange,
     autoComplete,
-    showTodayButton,
     disableFuture,
+    showTodayButton,
     disableOpenPicker,
     locale,
   }: InputDateProps) {
@@ -54,14 +52,14 @@ function InputDatePicker(
 
   return (
     <LocalizationProvider dateAdapter={DateAdapter} locale={currentLocale}>
-      <DatePicker
+      <DateTimePicker
         onChange={onChangeCombined}
         value={field.value}
         disableOpenPicker={disableOpenPicker}
         showTodayButton={showTodayButton ?? false}
         disableFuture={disableFuture ?? false}
-        inputFormat={currentLocale.format.date}
-        mask={currentLocale.format.date_mask}
+        inputFormat={currentLocale.format.date_hour}
+        mask={currentLocale.format.date_hour_mask}
         renderInput={(params: MuiTextFieldProps) => (
           <TextField
             // eslint-disable-next-line react/jsx-props-no-spreading

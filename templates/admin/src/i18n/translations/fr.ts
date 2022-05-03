@@ -53,7 +53,9 @@ const frMessages: Translations = {
     date: 'DD/MM/YYYY',
     date_mask: '__/__/____',
     hour: 'hh:mm',
+    hour_mask: '__:__',
     date_hour: 'DD/MM/YYYY hh:mm',
+    date_hour_mask: '__/__/____ __:__',
   },
   // home
   home: {

@@ -4,6 +4,7 @@ import Drawer from './drawer/Drawer';
 import UncontrolledDrawer from './drawer/UncontrolledDrawer';
 import InputDatePicker from './form/fields/InputDatePicker';
 import InputDateRangePicker from './form/fields/InputDateRangePicker';
+import InputDateTimePicker from './form/fields/InputDateTimePicker';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
 import FormField from './form/FormField';
@@ -71,6 +72,8 @@ export default class AdminTheme implements PlumeAdminTheme {
   inputSelect = InputSelect;
 
   inputDate = InputDatePicker;
+
+  inputDateTime = InputDateTimePicker;
 
   inputDateRange = InputDateRangePicker;
 }

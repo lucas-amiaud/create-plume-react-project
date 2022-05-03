@@ -88,5 +88,7 @@ export default abstract class PlumeAdminTheme {
 
   abstract inputDate: (props: InputDateProps) => JSX.Element;
 
+  abstract inputDateTime: (props: InputDateProps) => JSX.Element;
+
   abstract inputDateRange: (props: InputDateRangeProps) => JSX.Element;
 }
