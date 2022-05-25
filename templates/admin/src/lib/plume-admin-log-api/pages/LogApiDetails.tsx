@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
@@ -31,8 +31,8 @@ function LogApiDetails({ logApiPath }: Props) {
   const fetchLogById = () => {
     logApiLoader.monitor(
       logApiApi.fetchById(logApiId)
-        .then(setLogApiDetail)
-    )
+        .then(setLogApiDetail),
+    );
   };
 
   useOnComponentMounted(() => {
@@ -41,25 +41,25 @@ function LogApiDetails({ logApiPath }: Props) {
 
   const {
     control,
-    reset
+    reset,
   } = useForm<LogApiDetailsType>();
 
   useEffect(() => {
     reset(logApiDetail);
-  }, [logApiDetail])
+  }, [logApiDetail]);
 
   return (
     <theme.uncontrolledDrawer
       title={messages.t('logs_api.title_detail', logApiDetail?.api ?? ' ... ')}
       onClose={() => {
-        history.push(logApiPath)
+        history.push(logApiPath);
       }}
     >
       {
         logApiLoader.isLoading
         && (
           <div>
-            Loding
+            Loading
           </div>
         )
       }
@@ -68,7 +68,7 @@ function LogApiDetails({ logApiPath }: Props) {
         && logApiDetail
         && (
           <theme.pageBloc>
-            <form onSubmit={() => {}}>
+            <form onSubmit={(e :FormEvent<HTMLFormElement>) => e.preventDefault()}>
               <input type="hidden" name="id" value={logApiDetail.id} />
               <theme.formField
                 inputId="api"
@@ -77,7 +77,7 @@ function LogApiDetails({ logApiPath }: Props) {
                   control={control}
                   label={messages.t('logs_api.api')}
                   id="api"
-                  disabled
+                  readonly
                 />
               </theme.formField>
               <theme.formField
@@ -87,7 +87,7 @@ function LogApiDetails({ logApiPath }: Props) {
                   label={messages.t('logs_api.url')}
                   id="url"
                   control={control}
-                  disabled
+                  readonly
                 />
               </theme.formField>
               <theme.formField
@@ -97,7 +97,7 @@ function LogApiDetails({ logApiPath }: Props) {
                   control={control}
                   id="method"
                   label={messages.t('logs_api.method')}
-                  disabled
+                  readonly
                 />
               </theme.formField>
               <theme.formField
@@ -107,7 +107,29 @@ function LogApiDetails({ logApiPath }: Props) {
                   label={messages.t('logs_api.status_code')}
                   control={control}
                   id="statusCode"
-                  disabled
+                  readonly
+                />
+              </theme.formField>
+              <theme.formField
+                inputId="bodyRequest"
+              >
+                <theme.inputText
+                  label={messages.t('logs_api.status_code')}
+                  control={control}
+                  id="bodyRequest"
+                  multiline
+                  readonly
+                />
+              </theme.formField>
+              <theme.formField
+                inputId="bodyResponse"
+              >
+                <theme.inputText
+                  label={messages.t('logs_api.status_code')}
+                  control={control}
+                  id="bodyResponse"
+                  multiline
+                  readonly
                 />
               </theme.formField>
               <theme.panelSeparator />
@@ -115,7 +137,7 @@ function LogApiDetails({ logApiPath }: Props) {
                 <theme.inputText
                   control={control}
                   label={messages.t('label.creation_date')}
-                  disabled
+                  readonly
                   defaultValue={dayjs(logApiDetail.date).format('L LT')}
                 />
               </theme.formField>

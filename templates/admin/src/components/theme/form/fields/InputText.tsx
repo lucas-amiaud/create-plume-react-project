@@ -13,6 +13,7 @@ export default function InputText(
     control,
     rules,
     disabled,
+    readonly,
     defaultValue,
     onChange,
     onBlur,
@@ -61,7 +62,10 @@ export default function InputText(
       inputRef={field.ref}
       onChange={onChangeCombined}
       onBlur={onBlurCombined}
-      inputProps={{ onWheel: (e: any) => e.target.blur() }}
+      inputProps={{
+        onWheel: (e: any) => e.target.blur(),
+        readOnly: readonly ?? false,
+      }}
       multiline={multiline}
       rows={rows}
     />

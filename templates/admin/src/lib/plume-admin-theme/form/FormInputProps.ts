@@ -11,6 +11,7 @@ export type InputTextProps = {
   useNameAsId?: boolean;
   autoComplete?: string;
   disabled?: boolean;
+  readonly?: boolean;
   defaultValue?: string;
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
   control: Control<any>;
