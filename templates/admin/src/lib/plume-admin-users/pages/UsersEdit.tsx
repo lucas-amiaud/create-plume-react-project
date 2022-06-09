@@ -285,7 +285,7 @@ export default class UsersEdit {
             }
             <this.theme.actionsContainer>
               <this.theme.actionButton
-                iconName="keyboard_arrow_left"
+                icon="keyboard_arrow_left"
                 style={ActionStyle.SECONDARY}
                 onClick={confirmCloseWithoutSaving.handleConfirmation(cancelEdit)}
               >
@@ -294,7 +294,7 @@ export default class UsersEdit {
               {
                 userId && (
                   <this.theme.actionButton
-                    iconName="delete"
+                    icon="delete"
                     style={ActionStyle.DANGER}
                     onClick={confirmDeleteUser.handleConfirmation(() => deleteUser(userId))}
                     isLoading={deletingLoader.isLoading}
@@ -303,7 +303,7 @@ export default class UsersEdit {
                   </this.theme.actionButton>
                 )
               }
-              <this.theme.actionButton iconName="save" style={ActionStyle.PRIMARY} isLoading={savingLoader.isLoading}>
+              <this.theme.actionButton icon="save" style={ActionStyle.PRIMARY} isLoading={savingLoader.isLoading}>
                 {this.messages.t('action.save')}
               </this.theme.actionButton>
             </this.theme.actionsContainer>
