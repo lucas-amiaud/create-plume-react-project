@@ -5,7 +5,6 @@ export interface ErrorFunction {
 export type Translations = {
   app: {
     name: string,
-    baseline: string,
   },
   // actions
   action: {
@@ -21,12 +20,6 @@ export type Translations = {
     keep_editing: string,
     close: string,
     close_without_saving: string,
-    google: {
-      authenticate: string,
-    },
-    apple: {
-      authenticate: string,
-    },
   },
   // common labels
   label: {
@@ -49,8 +42,8 @@ export type Translations = {
     settings: string,
     log_api: string,
   },
-  //format
-  format : {
+  // format
+  format: {
     date: string,
     date_mask: string,
     hour: string,
@@ -64,9 +57,6 @@ export type Translations = {
   },
   login: {
     title: string,
-    actions: {
-      forgot: string,
-    }
   },
   // users
   users: {

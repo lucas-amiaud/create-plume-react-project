@@ -1,6 +1,6 @@
 import { DateRange } from '@mui/lab';
 import { Dayjs } from 'dayjs';
-import { FocusEventHandler } from 'react';
+import { ChangeEvent, FocusEvent } from 'react';
 import { Control } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 
@@ -16,8 +16,8 @@ export type InputTextProps = {
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
   control: Control<any>;
   // focus event
-  onBlur?: FocusEventHandler<any>;
-  onChange?: (value: { target: { value: string } }) => void;
+  onBlur?: (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   label?: string;
   placeholder?: string;
   shouldUnregister?: boolean;
@@ -36,14 +36,14 @@ export type InputSelectProps = {
   options: SelectOptionProps[];
   label: string;
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
-  onBlur?: FocusEventHandler<any>;
+  onBlur?: (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
   onChange?: Function;
   disabled?: boolean;
 };
 
 export type SelectOptionProps = {
   label: string,
-  value: any,
+  value: string,
 };
 
 type GenericInputDateProps = {

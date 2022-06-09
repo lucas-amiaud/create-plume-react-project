@@ -1,6 +1,7 @@
 import React from 'react';
 import { Drawer as MaterialDrawer, Icon } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import cssVariables from '../../../../assets/scss/modules/_variables.module.scss';
 import MessageService from '../../../i18n/messages/MessageService';

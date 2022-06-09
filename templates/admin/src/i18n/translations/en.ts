@@ -3,7 +3,6 @@ import { Translations } from './Translations';
 const enMessages: Translations = {
   app: {
     name: 'Plume admin',
-    baseline: 'Administration application',
   },
   // actions
   action: {
@@ -19,12 +18,6 @@ const enMessages: Translations = {
     keep_editing: 'Keep editing',
     close: 'Close',
     close_without_saving: 'Close without saving',
-    google: {
-      authenticate: 'Log in with Google',
-    },
-    apple: {
-      authenticate: 'Log in with Apple',
-    },
   },
   // common labels
   label: {
@@ -63,9 +56,6 @@ const enMessages: Translations = {
   },
   login: {
     title: 'Please authenticate',
-    actions: {
-      forgot: 'I forget my password',
-    },
   },
   // users
   users: {

@@ -3,7 +3,6 @@ import { Translations } from './Translations';
 const frMessages: Translations = {
   app: {
     name: 'Plume admin',
-    baseline: 'Espace d\'administration',
   },
   // actions
   action: {
@@ -19,12 +18,6 @@ const frMessages: Translations = {
     keep_editing: 'Rester sur la page',
     close: 'Fermer',
     close_without_saving: 'Fermer sans sauvegarder',
-    google: {
-      authenticate: 'Se connecter avec Google'
-    },
-    apple: {
-      authenticate: 'Se connecter avec Apple'
-    },
   },
   // common labels
   label: {
@@ -48,8 +41,8 @@ const frMessages: Translations = {
     settings: 'Paramètres',
     log_api: 'API Logs',
   },
-  //format
-  format : {
+  // format
+  format: {
     date: 'DD/MM/YYYY',
     date_mask: '__/__/____',
     hour: 'hh:mm',
@@ -63,9 +56,6 @@ const frMessages: Translations = {
   },
   login: {
     title: 'Se connecter',
-    actions: {
-      forgot: 'J\'ai oublié mon mot de passe',
-    }
   },
   // users
   users: {
@@ -89,13 +79,13 @@ const frMessages: Translations = {
       cancel: 'Annuler la saisie',
     },
     list: {
-      count: (count: number) => 'Nombre d\'utilisateurs : ' + count,
+      count: (count: number) => `Nombre d'utilisateurs : ${count}`,
     },
   },
   // logs api
   logs_api: {
     title_list: 'Liste des appels API',
-    title_detail: (api: string) => 'Détails de l\'appel à l\'API ' + api,
+    title_detail: (api: string) => `Détails de l'appel à l'API ${api}`,
     api: 'API',
     url: 'URL',
     date: 'Date de l\'appel',
@@ -106,14 +96,14 @@ const frMessages: Translations = {
     header_request: 'Entêtes de la requête',
     header_response: 'Entêtes de la réponse',
     list: {
-      count: (count: number) => 'Nombre de logs API : ' + count,
+      count: (count: number) => `Nombre de logs API : ${count}`,
     },
   },
   // sorts wording
-  'sort': {
-    'user': {
-      'name_desc': 'Trier par ordre alphabétique descendant',
-      'name_asc': 'Trier par ordre alphabétique ascendant',
+  sort: {
+    user: {
+      name_desc: 'Trier par ordre alphabétique descendant',
+      name_asc: 'Trier par ordre alphabétique ascendant',
     },
     logs_api: {
       date_desc: 'Trier du plus nouveau au plus ancien',
@@ -121,11 +111,11 @@ const frMessages: Translations = {
     },
   },
   // filters wording
-  'filter': {
-    'user': {
-      'title': 'Filtres',
-      'name': 'Nom',
-      'role': 'Rôle',
+  filter: {
+    user: {
+      title: 'Filtres',
+      name: 'Nom',
+      role: 'Rôle',
     },
     logs_api: {
       api_name: 'Nom d\'API',

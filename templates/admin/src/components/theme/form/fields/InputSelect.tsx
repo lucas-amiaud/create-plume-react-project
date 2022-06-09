@@ -1,11 +1,24 @@
-import { TextField, MenuItem } from '@mui/material';
+import { MenuItem, TextField } from '@mui/material';
 import React from 'react';
 import { useController } from 'react-hook-form';
-import { InputSelectProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
+import {
+  InputSelectProps,
+  SelectOptionProps,
+} from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
 export default function InputSelect(
   {
-    name, id, label, options, disabled, useNameAsId, defaultValue, control, required, onBlur, onChange,
+    name,
+    id,
+    label,
+    options,
+    disabled,
+    useNameAsId,
+    defaultValue,
+    control,
+    required,
+    onBlur,
+    onChange,
   }: InputSelectProps) {
   const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
 
@@ -16,14 +29,14 @@ export default function InputSelect(
     defaultValue: defaultValue || '',
   });
 
-  const onBlurCombined = (value: any) => {
+  const onBlurCombined = (value: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     field.onBlur();
     if (onBlur) {
       onBlur(value);
     }
   };
 
-  const onChangeField = (event: any) => {
+  const onChangeField = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     field.onChange(event);
     if (onChange) {
       onChange(event.target.value);
@@ -45,12 +58,13 @@ export default function InputSelect(
       onChange={onChangeField}
     >
       {
-        React.Children.toArray(options?.map((option: any) => (
+        React.Children.toArray(
+          options?.map((option: SelectOptionProps) => (
             <MenuItem key={`${option.label}-${option.value}`} value={option.value}>
               {option.label}
             </MenuItem>
-          ),
-        ))
+          )),
+        )
       }
     </TextField>
   );

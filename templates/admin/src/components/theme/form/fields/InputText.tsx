@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { TextField } from '@mui/material';
+import React from 'react';
 import { useController } from 'react-hook-form';
 import { InputTextProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
@@ -34,14 +34,14 @@ export default function InputText(
     defaultValue: defaultValue || '',
   });
 
-  const onBlurCombined = (value: React.FocusEvent<unknown>) => {
+  const onBlurCombined = (value: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     field.onBlur();
     if (onBlur) {
       onBlur(value);
     }
   };
 
-  const onChangeCombined = (value: any) => {
+  const onChangeCombined = (value: React.ChangeEvent<HTMLTextAreaElement>) => {
     field.onChange(value);
     if (onChange) {
       onChange(value);
@@ -63,7 +63,6 @@ export default function InputText(
       onChange={onChangeCombined}
       onBlur={onBlurCombined}
       inputProps={{
-        onWheel: (e: any) => e.target.blur(),
         readOnly: readonly ?? false,
       }}
       multiline={multiline}

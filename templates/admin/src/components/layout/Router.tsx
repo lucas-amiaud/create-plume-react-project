@@ -5,8 +5,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
+import Home from '../features/Home';
 import LogApi from '../../lib/plume-admin-log-api/pages/LogApi';
-import Home from '../pages/Home';
 import Users from '../../lib/plume-admin-users/pages/Users';
 import PermissionRoute from '../theme/routes/PermissionRoute';
 import Permission from '../../services/session/Permission';
