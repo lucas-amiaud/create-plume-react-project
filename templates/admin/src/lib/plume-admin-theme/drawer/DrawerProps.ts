@@ -5,7 +5,7 @@ type CommonDrawerProps = {
   sizedByWidth?: boolean,
   fullScreen?: boolean,
   className?: string,
-}
+};
 
 export interface DrawerTypeProps extends CommonDrawerProps {
   open: boolean,
