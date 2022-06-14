@@ -62,7 +62,7 @@ export default abstract class PlumeAdminTheme {
 
   abstract popinCloseWithoutSaving: (props: PopinCloseWithoutSavingProps) => JSX.Element | null;
 
-  //drawer
+  // drawer
   abstract drawer: (props: DrawerTypeProps) => JSX.Element;
 
   abstract uncontrolledDrawer: (props: UncontrolledDrawerTypeProps) => JSX.Element;

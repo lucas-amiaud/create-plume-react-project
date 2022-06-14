@@ -1,19 +1,19 @@
-import React, { useMemo } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import isEmail from 'validator/lib/isEmail';
 import dayjs from 'dayjs';
-import UserApi from '../api/UserApi';
-import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
-import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
+import React, { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory, useParams } from 'react-router-dom';
+import isEmail from 'validator/lib/isEmail';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
-import { useOnDependenciesChange } from '../../react-hooks-alias/ReactHooksAlias';
-import useConfirmation from '../../react-hook-confirm/ReactHookConfirm';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import PlumeMessageResolver from '../../plume-messages/MessageResolver';
-import NotificationEngine from '../../plume-notification/NotificationEngine';
 import { makeErrorMessageMapping } from '../../plume-form-error-messages/FormErrorMessages';
 import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
+import PlumeMessageResolver from '../../plume-messages/MessageResolver';
+import NotificationEngine from '../../plume-notification/NotificationEngine';
+import useConfirmation from '../../react-hook-confirm/ReactHookConfirm';
+import { useOnDependenciesChange } from '../../react-hooks-alias/ReactHooksAlias';
+import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
+import UserApi from '../api/UserApi';
+import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type UsersRouteParams = {
   userId: string,
@@ -32,10 +32,12 @@ function findUser(userId: string, usersWithRoles?: AdminUsersWithIndexedRolesTyp
 }
 
 export default class UsersEdit {
-  constructor(private readonly userApi: UserApi,
-              private readonly notificationEngine: NotificationEngine,
-              private readonly theme: PlumeAdminTheme,
-              private readonly messages: PlumeMessageResolver) {
+  constructor(
+    private readonly userApi: UserApi,
+    private readonly notificationEngine: NotificationEngine,
+    private readonly theme: PlumeAdminTheme,
+    private readonly messages: PlumeMessageResolver,
+  ) {
   }
 
   render = ({ usersWithRoles, updateUsersAndRoles, usersPath }: Props) => {
@@ -303,7 +305,11 @@ export default class UsersEdit {
                   </this.theme.actionButton>
                 )
               }
-              <this.theme.actionButton icon="save" style={ActionStyle.PRIMARY} isLoading={savingLoader.isLoading}>
+              <this.theme.actionButton
+                icon="save"
+                style={ActionStyle.PRIMARY}
+                isLoading={savingLoader.isLoading}
+              >
                 {this.messages.t('action.save')}
               </this.theme.actionButton>
             </this.theme.actionsContainer>
