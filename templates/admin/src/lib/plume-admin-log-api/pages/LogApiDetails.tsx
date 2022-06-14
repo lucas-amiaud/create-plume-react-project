@@ -12,7 +12,7 @@ import { LogApiDetailsType } from '../api/LogApiTypes';
 
 type Props = {
   logApiPath: string,
-}
+};
 
 type LogApiRouteParams = {
   logApiId: string,

@@ -13,12 +13,12 @@ export type LogHeader = {
   name: string,
   type: string,
   value: string,
-}
+};
 
 export type HttpHeaders = {
   headers: LogHeader[],
   mimeType: string,
-}
+};
 
 export type LogApiDetailsType = {
   id: string,
