@@ -84,7 +84,8 @@
     "eslint": "eslint src --ext .ts,.tsx",
     "typescript": "tsc --project tsconfig.json --noEmit",
     "test": "jest --config jest.config.js",
-    "coverage": "jest --config jest.config.js --coverage --watchAll=false"
+    "coverage": "jest --config jest.config.js --coverage --watchAll=false",
+    "lint": "yarn typescript && yarn eslint"
   },
   "packageManager": "yarn@3.1.1"
 }

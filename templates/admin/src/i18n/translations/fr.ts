@@ -104,6 +104,8 @@ const frMessages: Translations = {
     user: {
       name_desc: 'Trier par ordre alphabétique descendant',
       name_asc: 'Trier par ordre alphabétique ascendant',
+      creation_date_asc: 'Trier du plus ancien au plus nouveau',
+      creation_date_desc: 'Trier du plus nouveau au plus ancien',
     },
     logs_api: {
       date_desc: 'Trier du plus nouveau au plus ancien',

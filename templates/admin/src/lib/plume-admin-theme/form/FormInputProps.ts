@@ -14,6 +14,7 @@ export type InputTextProps = {
   readonly?: boolean;
   defaultValue?: string;
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   control: Control<any>;
   // focus event
   onBlur?: (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
