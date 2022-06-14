@@ -13,7 +13,7 @@ import PageTitle from './layout/PageTitle';
 import { Panel, PanelSeparator } from './layout/Panel';
 import StatusDot from './layout/StatusDot';
 import MultipleChoiceFilterMenu, { MultipleChoiceObjectFilterMenu } from './list/filter/MultipleChoiceFilterMenu';
-import SingleChoiceFilterMenu, { SingleObjectChoiceFilterMenu, } from './list/filter/SingleChoiceFilterMenu';
+import SingleChoiceFilterMenu, { SingleObjectChoiceFilterMenu } from './list/filter/SingleChoiceFilterMenu';
 import { ListElements, ListSingleElement } from './list/ListElements';
 import ListHeader from './list/ListHeader';
 import SearchBar from './list/search/SearchBar';

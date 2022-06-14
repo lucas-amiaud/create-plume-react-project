@@ -27,12 +27,14 @@ function SingleChoiceFilterMenu(
 
   return (
     <div className="list-filter-menu">
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <h2>{(messages.filter as any)[filterMenuKey].title}</h2>
       <div className="list-filters">
         {
           filters.map((filterPossibility) => (
             <div key={filterPossibility.filterKey} className="filter">
               <span className="filter-title">
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {(messages.filter as any)[filterMenuKey][filterPossibility.filterKey]}
               </span>
               <RadioGroup

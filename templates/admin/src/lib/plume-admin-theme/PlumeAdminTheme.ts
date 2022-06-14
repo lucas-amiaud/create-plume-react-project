@@ -5,7 +5,7 @@ import {
   InputDateProps,
   InputDateRangeProps,
   InputSelectProps,
-  InputTextProps
+  InputTextProps,
 } from './form/FormInputProps';
 import {
   LayoutPageBlocColumnProps,
@@ -20,13 +20,9 @@ import {
   SingleChoiceObjectFilterMenuProps,
   SingleChoiceRawFilterMenuProps,
 } from './list/filter/FilterProps';
-import {
-  ListElementsProps,
-  ListHeaderProps,
-  ListSingleElementProps,
-} from './list/ListProps';
-import { SortMenuProps } from './list/sort/SortProps';
+import { ListElementsProps, ListHeaderProps, ListSingleElementProps } from './list/ListProps';
 import { SearchBarProps } from './list/search/SearchProps';
+import { SortMenuProps } from './list/sort/SortProps';
 import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
