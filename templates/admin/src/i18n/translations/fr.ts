@@ -68,7 +68,7 @@ const frMessages: Translations = {
       cancel: 'Annuler la saisie',
     },
     list: {
-      count: (count: number) => 'Nombre d\'utilisateurs : ' + count,
+      count: (count: number) => `Nombre d'utilisateurs : ${count}`,
     },
   },
   // sorts wording
@@ -76,6 +76,8 @@ const frMessages: Translations = {
     user: {
       name_desc: 'Trier par ordre alphabétique descendant',
       name_asc: 'Trier par ordre alphabétique ascendant',
+      creation_date_asc: 'Trier du plus ancien au plus nouveau',
+      creation_date_desc: 'Trier du plus nouveau au plus ancien',
     },
   },
   // filters wording
