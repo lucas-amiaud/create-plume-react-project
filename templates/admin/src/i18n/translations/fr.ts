@@ -16,6 +16,7 @@ const frMessages: Translations = {
     authenticate: 'Me connecter',
     disconnect: 'Me déconnecter',
     keep_editing: 'Rester sur la page',
+    close: 'Fermer',
     close_without_saving: 'Fermer sans sauvegarder',
   },
   // common labels
@@ -62,6 +63,10 @@ const frMessages: Translations = {
     title_edit: 'Modification d\'un utilisateur',
     add: 'Ajouter un utilisateur',
     error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
+    popin: {
+      title_delete: 'Supprimer l\'utilisateur',
+      cancel: 'Annuler la saisie',
+    },
     list: {
       count: (count: number) => `Nombre d'utilisateurs : ${count}`,
     },

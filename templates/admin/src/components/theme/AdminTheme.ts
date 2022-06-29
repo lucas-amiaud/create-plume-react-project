@@ -1,5 +1,7 @@
 import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
+import Drawer from './drawer/Drawer';
+import UncontrolledDrawer from './drawer/UncontrolledDrawer';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
 import FormField from './form/FormField';
@@ -50,6 +52,10 @@ export default class AdminTheme implements PlumeAdminTheme {
   popin = Popin;
 
   popinCloseWithoutSaving = PopinCloseWithoutSaving;
+
+  drawer = Drawer;
+
+  uncontrolledDrawer = UncontrolledDrawer;
 
   formField = FormField;
 

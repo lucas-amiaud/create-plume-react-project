@@ -1,10 +1,12 @@
-import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
-import { ActionButton, ActionsContainer } from '../action/Actions';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
-import { PopinCloseWithoutSavingProps, PopinProps } from '../../../lib/plume-admin-theme/popin/PopinProps';
-import { Panel } from '../layout/Panel';
+import React from 'react';
 import MessageService from '../../../i18n/messages/MessageService';
+import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+import {
+  PopinCloseWithoutSavingProps,
+  PopinProps,
+} from '../../../lib/plume-admin-theme/popin/PopinProps';
+import { ActionButton, ActionsContainer } from '../action/Actions';
 
 export function Popin({
   children, zIndex, height, width,
@@ -19,16 +21,19 @@ export function Popin({
 }
 
 export function PopinCloseWithoutSaving(
-  { confirmCloseWithoutSaving, closeWithoutSavingAction }: PopinCloseWithoutSavingProps,
+  { title, confirmCloseWithoutSaving, closeWithoutSavingAction }: PopinCloseWithoutSavingProps,
 ) {
   const messages = getGlobalInstance(MessageService).t();
 
   return confirmCloseWithoutSaving.shouldAskConfirmation
     ? (
       <Popin zIndex={101}>
-        <Panel>
+        <div className="popin-title">
+          {title}
+        </div>
+        <div className="popin-message">
           {messages.message.unsaved_data}
-        </Panel>
+        </div>
         <ActionsContainer>
           <ActionButton
             style={ActionStyle.DANGER}

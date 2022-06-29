@@ -1,0 +1,85 @@
+@use 'assets/scss/variables' as *;
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &--20 {
+    .MuiDrawer-paper {
+      width: 20%;
+    }
+  }
+
+  &--40 {
+    .MuiDrawer-paper {
+      width: 40%;
+    }
+  }
+
+  &--50 {
+    .MuiDrawer-paper {
+      width: 50%;
+    }
+  }
+
+  &--60 {
+    .MuiDrawer-paper {
+      width: 60%;
+    }
+  }
+
+  &--80 {
+    .MuiDrawer-paper {
+      width: 80%;
+    }
+  }
+
+  &--80, &--full {
+    .MuiDrawer-paper {
+      width: 100%;
+    }
+  }
+}
+
+.drawer-header {
+  height: 6%;
+  display: flex;
+  padding: $spacer-6 + $spacer-2;
+  position: relative;
+  justify-content: center;
+  background: rgba($secondary-color, 10%);
+
+  button {
+    position: absolute;
+    top: 50%;
+    left: $spacer-5;
+    transform: translateY(-50%);
+
+    span {
+      margin-right: $spacer-3;
+    }
+  }
+
+  .drawer-title-container {
+    position: absolute;
+    height: 100%;
+    top: 50%;
+    left: 40%;
+    display: flex;
+    align-items: center;
+    transform: translateY(-50%);
+
+    h1 {
+      color: $secondary-color;
+      font-size: $font-size-large;
+      text-align: center;
+    }
+  }
+}
+
+.drawer-content {
+  height: 100%;
+  overflow: auto;
+  padding: $spacer-6 $spacer-8;
+}

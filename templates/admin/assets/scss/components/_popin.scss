@@ -12,11 +12,22 @@
   align-items: center;
 
   .popin-container {
-    background-color: #ffffff;
-    box-shadow: 0 3px 5px 1px rgba(#000000, .25);
+    background-color: #fff;
+    box-shadow: 0 3px 5px 1px rgba(#000, .25);
     border-radius: $border-radius-3;
     padding: $spacer-6;
+    max-width: 600px;
     max-height: 100%;
     overflow: auto;
+
+    .popin-title {
+      color: $secondary-color;
+      font-size: $font-size-large;
+    }
+
+    .popin-message {
+      margin: $spacer-6 0;
+      white-space: pre-wrap;
+    }
   }
 }

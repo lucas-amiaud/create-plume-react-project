@@ -18,6 +18,7 @@ export type Translations = {
     authenticate: string,
     disconnect: string,
     keep_editing: string,
+    close: string,
     close_without_saving: string,
   },
   // common labels
@@ -63,6 +64,10 @@ export type Translations = {
     title_edit: string,
     add: string,
     error_passwords_different: string,
+    popin: {
+      title_delete: string,
+      cancel: string,
+    }
     list: {
       count: (count: number) => string,
     },

@@ -16,6 +16,7 @@ const enMessages: Translations = {
     authenticate: 'Log in',
     disconnect: 'Log out',
     keep_editing: 'Keep editing',
+    close: 'Close',
     close_without_saving: 'Close without saving',
   },
   // common labels
@@ -64,6 +65,10 @@ const enMessages: Translations = {
     error_passwords_different: 'Password do not match its confirmation',
     list: {
       count: (count: number) => `User count : ${count}`,
+    },
+    popin: {
+      title_delete: 'Delete user',
+      cancel: 'Cancel entry',
     },
   },
   // sorts wording
