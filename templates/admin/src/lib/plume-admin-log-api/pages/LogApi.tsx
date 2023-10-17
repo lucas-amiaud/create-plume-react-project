@@ -13,7 +13,6 @@ class LogApi {
   render = () => {
     const logApiPath: string = '/log-api';
 
-    this.theme;
     return (
       <this.theme.panel>
         <LogApiList
