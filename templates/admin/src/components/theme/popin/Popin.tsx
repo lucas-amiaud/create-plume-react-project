@@ -1,6 +1,5 @@
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../i18n/messages/MessageService';
+import useMessages from '../../../i18n/hooks/messagesHook';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import {
   PopinCloseWithoutSavingProps,
@@ -23,7 +22,7 @@ export function Popin({
 export function PopinCloseWithoutSaving(
   { title, confirmCloseWithoutSaving, closeWithoutSavingAction }: PopinCloseWithoutSavingProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
 
   return confirmCloseWithoutSaving.shouldAskConfirmation
     ? (

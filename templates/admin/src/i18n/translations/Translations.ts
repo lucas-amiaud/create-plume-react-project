@@ -1,5 +1,5 @@
 export interface ErrorFunction {
-  (...args: string[]): string;
+  (...args: string[]): string,
 }
 
 export type Translations = {
@@ -51,7 +51,6 @@ export type Translations = {
   users: {
     userName: string,
     password: string,
-    password_confirm: string,
     email: string,
     firstName: string,
     lastName: string,
@@ -63,11 +62,12 @@ export type Translations = {
     title_create: string,
     title_edit: string,
     add: string,
+    password_confirm: string,
     error_passwords_different: string,
     popin: {
       title_delete: string,
       cancel: string,
-    }
+    },
     list: {
       count: (count: number) => string,
     },
@@ -80,15 +80,15 @@ export type Translations = {
       creation_date_asc: string,
       creation_date_desc: string,
     },
-  }
+  },
   // filters wording
   filter: {
     user: {
       title: string,
       name: string,
       role: string,
-    }
-  }
+    },
+  },
   // errors
   error: {
     field: {
