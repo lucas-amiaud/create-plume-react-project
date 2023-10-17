@@ -1,12 +1,16 @@
 import { Dayjs } from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { replaceValueForFilter } from '../../../components/theme/utils/FilterUtils';
-import MessageService from '../../../i18n/messages/MessageService';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import {
+  replaceValueForFilter,
+} from '../../../components/theme/list/filter/SearchFilters';
+import useMessages from '../../../i18n/hooks/messagesHook';
 import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
+import useLoader, {
+  LoaderState,
+} from '../../plume-http-react-hook-loader/promiseLoaderHook';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import LogApiApi from '../api/LogApiApi';
 import { LogApiFilters, LogApiTrimmed } from '../api/LogApiTypes';
@@ -19,10 +23,10 @@ type Props = {
 };
 
 function LogApiList({ logApiPath }: Props) {
-  const messages = getGlobalInstance(MessageService).t();
-  const theme = getGlobalInstance(PlumeAdminTheme);
-  const logApiApi = getGlobalInstance(LogApiApi);
-  const history = useHistory();
+  const { messages } = useMessages();
+  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
+  const logApiApi: LogApiApi = getGlobalInstance(LogApiApi);
+  const navigate: NavigateFunction = useNavigate();
 
   // search bar
   const [currentSearchBarFilter, setCurrentSearchBarFilter] = useState<string>();
@@ -35,14 +39,14 @@ function LogApiList({ logApiPath }: Props) {
   const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>();
   const [selectedLogsApiFilters, setSelectedLogsApiFilters] = useState<Map<string, string>>(new Map<string, string>());
   const [logsApiFilters, setLogsApiFilters] = useState<LogApiFilters>();
-  const logApiFiltersLoader = useLoader();
+  const logApiFiltersLoader: LoaderState = useLoader();
   const fetchFilters = () => logApiFiltersLoader.monitor(
     logApiApi.fetchLogApiFilters()
       .then(setLogsApiFilters),
   );
 
   const [logsApi, setLogsApi] = useState<LogApiTrimmed[]>();
-  const logsApiLoader = useLoader();
+  const logsApiLoader: LoaderState = useLoader();
   const fetchLogsApi = () => logsApiLoader.monitor(
     logApiApi
       .fetchAll({
@@ -71,7 +75,7 @@ function LogApiList({ logApiPath }: Props) {
     <>
       <theme.pageTitle>{messages.logs_api.title_list}</theme.pageTitle>
       <theme.pageBloc>
-        <theme.pageBlocColumn column="50">
+        <theme.pageBlocColumn columnWidth="50">
           <theme.searchBar
             onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
               setCurrentSearchBarFilter(event.target.value);
@@ -80,7 +84,7 @@ function LogApiList({ logApiPath }: Props) {
         </theme.pageBlocColumn>
       </theme.pageBloc>
       <theme.pageBloc>
-        <theme.pageBlocColumn column="50">
+        <theme.pageBlocColumn columnWidth="50">
           <LogApiRangeSelector
             onStartDateChange={(date: Dayjs | null) => {
               setSelectedStartDate(date);
@@ -92,7 +96,7 @@ function LogApiList({ logApiPath }: Props) {
         </theme.pageBlocColumn>
       </theme.pageBloc>
       <theme.pageBloc>
-        <theme.pageBlocColumn column="20">
+        <theme.pageBlocColumn columnWidth="20">
           <theme.singleChoiceFilterMenu
             filterMenuKey="logs_api"
             filters={[
@@ -121,7 +125,7 @@ function LogApiList({ logApiPath }: Props) {
             selectedValues={selectedLogsApiFilters}
           />
         </theme.pageBlocColumn>
-        <theme.pageBlocColumn column="80">
+        <theme.pageBlocColumn columnWidth="80">
           <theme.listHeader
             listTitle={messages.logs_api.list.count(logsApi?.length || 0)}
             sortConfiguration={{
@@ -140,7 +144,7 @@ function LogApiList({ logApiPath }: Props) {
                   <LogApiTile
                     logApi={logApi}
                     onClick={() => {
-                      history.push(`${logApiPath}/${logApi.id}`);
+                      navigate(`${logApiPath}/${logApi.id}`);
                     }}
                   />
                 )),

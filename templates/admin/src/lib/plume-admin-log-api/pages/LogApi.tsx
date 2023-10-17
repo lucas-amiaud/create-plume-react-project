@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import LogApiList from '../components/LogApiList';
 import LogApiDetails from './LogApiDetails';
@@ -11,20 +11,24 @@ class LogApi {
   }
 
   render = () => {
-    const { path } = useRouteMatch();
+    const logApiPath: string = '/log-api';
 
+    this.theme;
     return (
       <this.theme.panel>
         <LogApiList
-          logApiPath={path}
+          logApiPath={logApiPath}
         />
-        <Switch>
-          <Route path={`${path}/:logApiId`}>
-            <LogApiDetails
-              logApiPath={path}
-            />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path={`${logApiPath}/:logApiId`}
+            element={
+              <LogApiDetails
+                logApiPath={logApiPath}
+              />
+            }
+          />
+        </Routes>
       </this.theme.panel>
     );
   };

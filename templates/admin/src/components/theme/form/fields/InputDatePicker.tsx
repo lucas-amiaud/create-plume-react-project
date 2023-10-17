@@ -1,13 +1,11 @@
-import { Dayjs } from 'dayjs';
-import React from 'react';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import DateAdapter from '@mui/lab/AdapterDayjs';
 import { MuiTextFieldProps } from '@mui/lab/internal/pickers/PureDateInput';
 import { TextField } from '@mui/material';
+import { Dayjs } from 'dayjs';
+import React from 'react';
 import { useController } from 'react-hook-form';
-import en from '../../../../i18n/translations/en';
-import fr from '../../../../i18n/translations/fr';
-import { Translations } from '../../../../i18n/translations/Translations';
+import useMessages from '../../../../i18n/hooks/messagesHook';
 import {
   InputDateProps,
 } from '../../../../lib/plume-admin-theme/form/FormInputProps';
@@ -31,11 +29,7 @@ function InputDatePicker(
     locale,
   }: InputDateProps) {
   const fieldId: string = (useNameAsId ? name : (id ?? name)) || '';
-
-  const localeMap = {
-    en,
-    fr,
-  };
+  const { messages } = useMessages();
 
   const { field } = useController({
     name: fieldId,
@@ -51,18 +45,16 @@ function InputDatePicker(
     }
   };
 
-  const currentLocale: Translations = localeMap[locale as 'fr' | 'en'];
-
   return (
-    <LocalizationProvider dateAdapter={DateAdapter} locale={currentLocale}>
+    <LocalizationProvider dateAdapter={DateAdapter} locale={locale}>
       <DatePicker
         onChange={onChangeCombined}
         value={field.value}
         disableOpenPicker={disableOpenPicker}
         showTodayButton={showTodayButton ?? false}
         disableFuture={disableFuture ?? false}
-        inputFormat={currentLocale.format.date}
-        mask={currentLocale.format.date_mask}
+        inputFormat={messages.format.date}
+        mask={messages.format.date_mask}
         renderInput={(params: MuiTextFieldProps) => (
           <TextField
             // eslint-disable-next-line react/jsx-props-no-spreading
@@ -74,7 +66,7 @@ function InputDatePicker(
             label={label}
             inputProps={{
               ...params.inputProps,
-              placeholder: placeholder || currentLocale.format.date,
+              placeholder: placeholder || messages.format.date,
             }}
             autoComplete={autoComplete}
             disabled={disabled ?? false}

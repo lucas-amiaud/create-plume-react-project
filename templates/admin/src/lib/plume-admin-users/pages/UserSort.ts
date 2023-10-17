@@ -4,7 +4,7 @@ import { AdminUserDetails } from '../api/AdminUserTypes';
 import {
   createCustomCompareSorting,
   createLocaleCompareSorting,
-} from '../../../components/theme/utils/SortUtils';
+} from '../../../components/theme/list/sort/SearchSorts';
 
 export const NAME_DESC: SortElementProps = {
   sortKey: 'NAME_DESC',
@@ -27,7 +27,7 @@ export const CREATION_DATE_ASC: SortElementProps = {
   sortFunction: createCustomCompareSorting<AdminUserDetails>(
     (o: AdminUserDetails) => o.creationDate,
     true,
-    (dateA, dateB) => dayjs(dateA).diff(dateB),
+    (dateA: string, dateB: string) => dayjs(dateA).diff(dateB),
   ),
 };
 
@@ -36,7 +36,7 @@ export const CREATION_DATE_DESC: SortElementProps = {
   sortFunction: createCustomCompareSorting<AdminUserDetails>(
     (o: AdminUserDetails) => o.creationDate,
     false,
-    (dateA, dateB) => dayjs(dateA).diff(dateB),
+    (dateA: string, dateB: string) => dayjs(dateA).diff(dateB),
   ),
 };
 

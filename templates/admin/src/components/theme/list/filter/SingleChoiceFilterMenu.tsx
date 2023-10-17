@@ -1,9 +1,8 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../../i18n/messages/MessageService';
+import useMessages from '../../../../i18n/hooks/messagesHook';
 import {
-  ObjectFilterProps,
+  ObjectFilterProps, RawFilterProps,
   SingleChoiceObjectFilterMenuProps,
   SingleChoiceRawFilterMenuProps,
 } from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
@@ -23,7 +22,7 @@ function SingleChoiceFilterMenu(
     filterMenuKey, filters, onFilterValueClicked, selectedValues,
   }: SingleChoiceRawFilterMenuProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
 
   return (
     <div className="list-filter-menu">
@@ -31,7 +30,7 @@ function SingleChoiceFilterMenu(
       <h2>{(messages.filter as any)[filterMenuKey].title}</h2>
       <div className="list-filters">
         {
-          filters.map((filterPossibility) => (
+          filters.map((filterPossibility: RawFilterProps) => (
             <div key={filterPossibility.filterKey} className="filter">
               <span className="filter-title">
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

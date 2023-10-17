@@ -1,27 +1,28 @@
-import React from 'react';
 import { Drawer as MaterialDrawer, Icon } from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import cssVariables from '../../../../assets/scss/modules/_variables.module.scss';
-import MessageService from '../../../i18n/messages/MessageService';
-import { ActionButton } from '../action/Actions';
-import { DrawerTypeProps } from '../../../lib/plume-admin-theme/drawer/DrawerProps';
+import useMessages from '../../../i18n/hooks/messagesHook';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+import {
+  DrawerTypeProps,
+} from '../../../lib/plume-admin-theme/drawer/DrawerProps';
+import { ActionButton } from '../action/Actions';
 
 export default function Drawer(
   {
     title, children, open, close, size, fullScreen, sizedByWidth, className,
   }: DrawerTypeProps) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
   const { widthSmallScreen, widthMediumScreen } = cssVariables;
 
   // Returns width percentage of drawer
   const drawerSize = () => {
-    const defaultSize = 40;
-    const largeSize = 60;
+    const defaultSize: number = 40;
+    const largeSize: number = 60;
     if (sizedByWidth) {
-      const width = window.innerWidth;
+      const width: number = window.innerWidth;
       if (width < widthSmallScreen) {
         return 'full';
       }

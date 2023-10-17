@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function LogApiTile({ logApi, onClick }: Props) {
-  const theme = getGlobalInstance(PlumeAdminTheme);
+  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
 
   const logApiStatus = (): Status => {
     if (logApi.statusCode >= 400) {

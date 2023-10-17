@@ -6,10 +6,10 @@ import { Icon, TextField } from '@mui/material';
 import { Dayjs } from 'dayjs';
 import React from 'react';
 import { useController } from 'react-hook-form';
-import en from '../../../../i18n/translations/en';
-import fr from '../../../../i18n/translations/fr';
-import { Translations } from '../../../../i18n/translations/Translations';
-import { InputDateRangeProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
+import useMessages from '../../../../i18n/hooks/messagesHook';
+import {
+  InputDateRangeProps,
+} from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
 function InputDateRangePicker(
   {
@@ -27,6 +27,7 @@ function InputDateRangePicker(
   }: InputDateRangeProps,
 ) {
   const fieldId: string = (useNameAsId ? name : (id ?? name)) || '';
+  const { messages } = useMessages();
 
   const { field } = useController({
     name: fieldId,
@@ -45,21 +46,14 @@ function InputDateRangePicker(
     }
   };
 
-  const localeMap = {
-    en,
-    fr,
-  };
-
-  const currentLocale: Translations = localeMap[locale as 'fr' | 'en'];
-
   return (
-    <LocalizationProvider dateAdapter={DateAdapter} locale={currentLocale}>
+    <LocalizationProvider dateAdapter={DateAdapter} locale={locale}>
       <DateRangePicker
         startText="Debut"
         endText="Fin"
         value={field.value}
-        mask={currentLocale.format.date_mask}
-        inputFormat={currentLocale.format.date}
+        mask={messages.format.date_mask}
+        inputFormat={messages.format.date}
         showTodayButton={showTodayButton ?? false}
         disableFuture={disableFuture ?? false}
         onChange={(date: DateRange<Dayjs>, keyboardInputValue?: string) => {

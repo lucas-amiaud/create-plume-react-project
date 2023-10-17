@@ -1,9 +1,9 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import dayjs from 'dayjs';
+import useMessages from '../../../i18n/hooks/messagesHook';
 import Status from '../../plume-admin-theme/layout/Status';
 import { AdminUserDetails } from '../api/AdminUserTypes';
-import MessageService from '../../../i18n/messages/MessageService';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 
 type Props = {
@@ -13,20 +13,21 @@ type Props = {
 };
 
 export default function UserTile({ user, roles, onClick }: Props) {
-  const messages = getGlobalInstance(MessageService).t();
-  const theme = getGlobalInstance(PlumeAdminTheme);
+  const { messages } = useMessages();
+  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
 
-  const statusDotFromUser = (isActive: boolean): Status => {
+  const statusCircle = (isActive: boolean): Status => {
     if (isActive) {
       return Status.OK;
     }
     return Status.WARN;
   };
+
   return (
     <theme.listSingleElement cssClasses="user-tile">
       <div className="user-data user-data--id">
         <div className="data">
-          <theme.statusDot status={statusDotFromUser(!!user)} />
+          <theme.statusDot status={statusCircle(Boolean(user))} />
         </div>
         <div className="data">
           <span className="user-initials">

@@ -1,14 +1,21 @@
 import { Icon } from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
 import React, { MouseEvent, useRef } from 'react';
-import MessageService from '../../../../i18n/messages/MessageService';
-import { SearchBarProps } from '../../../../lib/plume-admin-theme/list/search/SearchProps';
+import useMessages from '../../../../i18n/hooks/messagesHook';
+import {
+  SearchBarProps,
+} from '../../../../lib/plume-admin-theme/list/search/SearchProps';
 import useToggle from '../../../../lib/react-hook-toggle/ReactHookToggle';
 
+/**
+ * Creates a text input in which you can add a contextual menu for more filters
+ * @param onSearch callback when a search is triggered
+ * @param placeHolder
+ * @param children an optional contextual menu
+ */
 function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
-  const messages = getGlobalInstance(MessageService).t();
-  const anchorEl = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const { messages } = useMessages();
+  const anchorEl: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement | null>(null);
+  const wrapperRef: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement | null>(null);
 
   const [displayMoreOptions, toggleDisplayMoreOptions] = useToggle(false);
 

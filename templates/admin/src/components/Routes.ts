@@ -1,5 +1,5 @@
-export const HOME = '/home';
-export const USERS = '/users';
-export const LOG_API = '/log-api';
+export const HOME: string = '/home';
+export const USERS: string = '/users';
+export const LOG_API: string = '/log-api';
 
-export const LOGIN = '/login';
+export const LOGIN: string = '/login';

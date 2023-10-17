@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { createCustomCompareSorting } from '../../../components/theme/utils/SortUtils';
+import { createCustomCompareSorting } from '../../../components/theme/list/sort/SearchSorts';
 import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import { LogApiTrimmed } from '../api/LogApiTypes';
 
@@ -8,7 +8,7 @@ export const DATE_DESC: SortElementProps = {
   sortFunction: createCustomCompareSorting<LogApiTrimmed>(
     (logApi: LogApiTrimmed) => logApi.date,
     false,
-    (a, b) => dayjs(a).diff(dayjs(b)),
+    (a: string, b: string) => dayjs(a).diff(dayjs(b)),
   ),
 };
 
@@ -17,7 +17,7 @@ export const DATE_ASC: SortElementProps = {
   sortFunction: createCustomCompareSorting<LogApiTrimmed>(
     (logApi: LogApiTrimmed) => logApi.date,
     true,
-    (a, b) => dayjs(a).diff(dayjs(b)),
+    (a: string, b: string) => dayjs(a).diff(dayjs(b)),
   ),
 };
 

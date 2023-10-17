@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
 import { DrawerTypeProps, UncontrolledDrawerTypeProps } from './drawer/DrawerProps';
 import { FormFieldProps } from './form/FormFieldProps';
