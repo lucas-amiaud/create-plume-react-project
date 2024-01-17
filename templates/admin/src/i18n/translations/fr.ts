@@ -12,6 +12,7 @@ const frMessages: Translations = {
     delete: 'Supprimer',
     search: 'Rechercher',
     add: 'Ajouter',
+    update: 'Modifier',
     authenticate: 'Me connecter',
     disconnect: 'Me déconnecter',
     keep_editing: 'Rester sur la page',
@@ -21,6 +22,8 @@ const frMessages: Translations = {
   label: {
     creation_date: 'Date de création',
     loading: 'Chargement...',
+    empty: 'Aucun élément',
+    more_options: 'Plus d\'options',
   },
   // common messages
   message: {
@@ -56,8 +59,29 @@ const frMessages: Translations = {
     title_list: 'Liste des utilisateurs',
     title_create: 'Création d\'un utilisateur',
     title_edit: 'Modification d\'un utilisateur',
+    add: 'Ajouter un utilisateur',
     password_confirm: 'Confirmation du mot de passe',
     error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
+    list: {
+      count: (count: number) => `Nombre d'utilisateurs : ${count}`,
+    },
+  },
+  // sorts wording
+  sort: {
+    user: {
+      name_desc: 'Trier par ordre alphabétique descendant',
+      name_asc: 'Trier par ordre alphabétique ascendant',
+      creation_date_asc: 'Trier du plus ancien au plus nouveau',
+      creation_date_desc: 'Trier du plus nouveau au plus ancien',
+    },
+  },
+  // filters wording
+  filter: {
+    user: {
+      title: 'Filtres',
+      name: 'Nom',
+      role: 'Rôle',
+    },
   },
   // errors
   error: {

@@ -12,6 +12,7 @@ const enMessages: Translations = {
     delete: 'Delete',
     search: 'Search',
     add: 'Add',
+    update: 'Update',
     authenticate: 'Log in',
     disconnect: 'Log out',
     keep_editing: 'Keep editing',
@@ -21,6 +22,8 @@ const enMessages: Translations = {
   label: {
     creation_date: 'Creation date',
     loading: 'Loading...',
+    empty: 'No element',
+    more_options: 'More options',
   },
   // common messages
   message: {
@@ -56,8 +59,29 @@ const enMessages: Translations = {
     title_list: 'Users list',
     title_create: 'User creation',
     title_edit: 'User modification',
+    add: 'Add user',
     password_confirm: 'Password confirmation',
     error_passwords_different: 'Password do not match its confirmation',
+    list: {
+      count: (count: number) => `User count : ${count}`,
+    },
+  },
+  // sorts wording
+  sort: {
+    user: {
+      name_desc: 'Sort by descendant alphabetical order',
+      name_asc: 'Sort by ascendant alphabetical order',
+      creation_date_asc: 'Sort oldest to newest',
+      creation_date_desc: 'Sort newest to oldest',
+    },
+  },
+  // filters wording
+  filter: {
+    user: {
+      title: 'Filters',
+      name: 'Name',
+      role: 'Role',
+    },
   },
   // errors
   error: {
