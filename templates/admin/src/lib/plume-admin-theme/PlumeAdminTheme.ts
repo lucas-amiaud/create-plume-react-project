@@ -1,7 +1,13 @@
+import { JSX } from 'react';
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
 import { DrawerTypeProps, UncontrolledDrawerTypeProps } from './drawer/DrawerProps';
 import { FormFieldProps } from './form/FormFieldProps';
-import { InputSelectProps, InputTextProps } from './form/FormInputProps';
+import {
+  InputDateProps,
+  InputDateRangeProps,
+  InputSelectProps,
+  InputTextProps,
+} from './form/FormInputProps';
 import {
   LayoutPageBlocColumnProps,
   LayoutPageBlocProps,
@@ -12,14 +18,12 @@ import {
 import {
   MultipleChoiceObjectFilterMenuProps,
   MultipleChoiceRawFilterMenuProps,
+  SingleChoiceObjectFilterMenuProps,
+  SingleChoiceRawFilterMenuProps,
 } from './list/filter/FilterProps';
-import {
-  ListElementsProps,
-  ListHeaderProps,
-  ListSingleElementProps,
-} from './list/ListProps';
-import { SortMenuProps } from './list/sort/SortProps';
+import { ListElementsProps, ListHeaderProps, ListSingleElementProps } from './list/ListProps';
 import { SearchBarProps } from './list/search/SearchProps';
+import { SortMenuProps } from './list/sort/SortProps';
 import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
@@ -41,6 +45,10 @@ export default abstract class PlumeAdminTheme {
   abstract multipleChoiceFilterMenu: (props: MultipleChoiceRawFilterMenuProps) => JSX.Element;
 
   abstract multipleChoiceObjectFilterMenu: <T>(props: MultipleChoiceObjectFilterMenuProps<T>) => JSX.Element;
+
+  abstract singleChoiceFilterMenu: (props: SingleChoiceRawFilterMenuProps) => JSX.Element;
+
+  abstract singleChoiceObjectFilterMenu: <T>(props: SingleChoiceObjectFilterMenuProps<T>) => JSX.Element;
 
   abstract listHeader: (props: ListHeaderProps) => JSX.Element;
 
@@ -74,4 +82,10 @@ export default abstract class PlumeAdminTheme {
   abstract inputText: (props: InputTextProps) => JSX.Element;
 
   abstract inputSelect: (props: InputSelectProps) => JSX.Element;
+
+  abstract inputDate: (props: InputDateProps) => JSX.Element;
+
+  abstract inputDateTime: (props: InputDateProps) => JSX.Element;
+
+  abstract inputDateRange: (props: InputDateRangeProps) => JSX.Element;
 }

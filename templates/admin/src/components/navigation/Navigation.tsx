@@ -4,7 +4,7 @@ import { getGlobalInstance } from 'plume-ts-di';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import Permission from '../../services/session/Permission';
 import SessionService from '../../services/session/SessionService';
-import { HOME, USERS } from '../Routes';
+import { HOME, LOG_API, USERS } from '../Routes';
 import LinkListItem from './LinkListItem';
 import NestedListItem from './NestedListItem';
 import plumeLogo from '../../../assets/icons/plume_logo.png';
@@ -50,6 +50,19 @@ export default function Navigation() {
                 icon="account_circle"
                 route={USERS}
                 label={messages.nav.user_list}
+                drawerOpen={isDrawerOpened}
+              />
+            </NestedListItem>
+          )
+        }
+        {
+          sessionService.hasPermission(Permission.MANAGE_SYSTEM)
+          && (
+            <NestedListItem icon="settings" label={messages.nav.settings} drawerOpen={isDrawerOpened}>
+              <LinkListItem
+                icon="http"
+                route={LOG_API}
+                label={messages.nav.log_api}
                 drawerOpen={isDrawerOpened}
               />
             </NestedListItem>

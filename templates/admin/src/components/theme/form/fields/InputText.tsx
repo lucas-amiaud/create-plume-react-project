@@ -11,6 +11,7 @@ export default function InputText({
   control,
   rules,
   disabled,
+  readonly,
   defaultValue,
   onChange,
   onBlur,
@@ -35,6 +36,9 @@ export default function InputText({
       disabled={disabled ?? false}
       onChange={onChange}
       onBlur={onBlur}
+      inputProps={{
+        readOnly: readonly ?? false,
+      }}
       multiline={multiline}
       rows={rows}
     />

@@ -38,6 +38,17 @@ const enMessages: Translations = {
     home: 'Home',
     users: 'User management',
     user_list: 'Users',
+    settings: 'Paramètres',
+    log_api: 'API Logs',
+  },
+  // format
+  format: {
+    date: 'YYYY-MM-DD',
+    date_mask: '____-__-__',
+    hour: 'hh:mm a',
+    hour_mask: '__:__ _M',
+    date_hour: 'YYYY-MM-DD hh:mm a',
+    date_hour_mask: '____-__-__ __:__ _M',
   },
   // home
   home: {
@@ -71,6 +82,23 @@ const enMessages: Translations = {
       cancel: 'Cancel entry',
     },
   },
+  // logs api
+  logs_api: {
+    title_list: 'API calls List',
+    title_detail: (api: string) => `${api} API request details`,
+    api: 'API',
+    url: 'URL',
+    date: 'Request date',
+    method: 'HTTP method',
+    status_code: 'Response code',
+    body_request: 'Body request',
+    body_response: 'Body response',
+    header_request: 'Request headers',
+    header_response: 'Response headers',
+    list: {
+      count: (count: number) => `API logs count : ${count}`,
+    },
+  },
   // sorts wording
   sort: {
     user: {
@@ -79,6 +107,10 @@ const enMessages: Translations = {
       creation_date_asc: 'Sort oldest to newest',
       creation_date_desc: 'Sort newest to oldest',
     },
+    logs_api: {
+      date_desc: 'Sort newest to oldest',
+      date_asc: 'Sort oldest to newest',
+    },
   },
   // filters wording
   filter: {
@@ -86,6 +118,11 @@ const enMessages: Translations = {
       title: 'Filters',
       name: 'Name',
       role: 'Role',
+    },
+    logs_api: {
+      api_name: 'API Name',
+      status_code: 'Status code',
+      method: 'HTTP Method',
     },
   },
   // errors

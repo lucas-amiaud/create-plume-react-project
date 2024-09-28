@@ -1,15 +1,18 @@
+import { JSX } from 'react';
 import {
   ActionButtonProps,
   ActionContainerProps,
   ActionLinkProps,
 } from '../../lib/plume-admin-theme/action/ActionProps';
 import {
-  DrawerTypeProps, UncontrolledDrawerTypeProps,
+  DrawerTypeProps,
+  UncontrolledDrawerTypeProps,
 } from '../../lib/plume-admin-theme/drawer/DrawerProps';
 import {
   FormFieldProps,
 } from '../../lib/plume-admin-theme/form/FormFieldProps';
 import {
+  InputDateProps, InputDateRangeProps,
   InputSelectProps,
   InputTextProps,
 } from '../../lib/plume-admin-theme/form/FormInputProps';
@@ -17,15 +20,19 @@ import {
   LayoutPageBlocColumnProps,
   LayoutPageBlocProps,
   LayoutPageTitleProps,
-  PanelProps, StatusDotProps,
+  PanelProps,
+  StatusDotProps,
 } from '../../lib/plume-admin-theme/layout/LayoutProps';
 import {
   MultipleChoiceObjectFilterMenuProps,
   MultipleChoiceRawFilterMenuProps,
+  SingleChoiceObjectFilterMenuProps,
+  SingleChoiceRawFilterMenuProps,
 } from '../../lib/plume-admin-theme/list/filter/FilterProps';
 import {
   ListElementsProps,
-  ListHeaderProps, ListSingleElementProps,
+  ListHeaderProps,
+  ListSingleElementProps,
 } from '../../lib/plume-admin-theme/list/ListProps';
 import {
   SearchBarProps,
@@ -39,6 +46,9 @@ import {
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import Drawer from './drawer/Drawer';
 import UncontrolledDrawer from './drawer/UncontrolledDrawer';
+import InputDatePicker from './form/fields/InputDatePicker';
+import InputDateRangePicker from './form/fields/InputDateRangePicker';
+import InputDateTimePicker from './form/fields/InputDateTimePicker';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
 import FormField from './form/FormField';
@@ -49,6 +59,9 @@ import StatusDot from './layout/StatusDot';
 import MultipleChoiceFilterMenu, {
   MultipleChoiceObjectFilterMenu,
 } from './list/filter/MultipleChoiceFilterMenu';
+import SingleChoiceFilterMenu, {
+  SingleObjectChoiceFilterMenu,
+} from './list/filter/SingleChoiceFilterMenu';
 import { ListElements, ListSingleElement } from './list/ListElements';
 import ListHeader from './list/ListHeader';
 import SearchBar from './list/search/SearchBar';
@@ -82,6 +95,12 @@ export default class AdminTheme implements PlumeAdminTheme {
     props: MultipleChoiceObjectFilterMenuProps<T>,
   ) => JSX.Element = MultipleChoiceObjectFilterMenu;
 
+  singleChoiceFilterMenu: (props: SingleChoiceRawFilterMenuProps) => JSX.Element = SingleChoiceFilterMenu;
+
+  singleChoiceObjectFilterMenu: <T>(
+    props: SingleChoiceObjectFilterMenuProps<T>,
+  ) => JSX.Element = SingleObjectChoiceFilterMenu;
+
   listHeader: (props: ListHeaderProps) => JSX.Element = ListHeader;
 
   listElements: (props: ListElementsProps) => JSX.Element = ListElements;
@@ -103,4 +122,10 @@ export default class AdminTheme implements PlumeAdminTheme {
   inputText: (props: InputTextProps) => JSX.Element = InputText;
 
   inputSelect: (props: InputSelectProps) => JSX.Element = InputSelect;
+
+  inputDate: (props: InputDateProps) => JSX.Element = InputDatePicker;
+
+  inputDateTime: (props: InputDateProps) => JSX.Element = InputDateTimePicker;
+
+  inputDateRange: (props: InputDateRangeProps) => JSX.Element = InputDateRangePicker;
 }

@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.10.4",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.10.9",
+    "@mui/lab": "5.0.0-alpha.49",
     "@mui/material": "^5.10.9",
     "@mui/styles": "^5.10.9",
     "@mui/system": "^5.10.9",
@@ -86,7 +87,8 @@
     "eslint": "eslint src --ext .ts,.tsx",
     "typescript": "tsc --noEmit",
     "test": "jest --config jest.config.js",
-    "coverage": "jest --config jest.config.js --coverage --watchAll=false"
+    "coverage": "jest --config jest.config.js --coverage --watchAll=false",
+    "lint": "yarn typescript && yarn eslint"
   },
   "packageManager": "yarn@3.6.4",
   "engines": {

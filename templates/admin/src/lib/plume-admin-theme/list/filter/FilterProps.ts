@@ -27,3 +27,17 @@ export interface MultipleChoiceObjectFilterMenuProps<T> extends MultipleChoiceFi
   filters: ObjectFilterProps<T>[],
   rawList: T[],
 }
+
+export interface SingleChoiceFilterMenuProps extends FilterMenuProps {
+  onFilterValueClicked: (filterKey: string, valueSelected: string) => void,
+  selectedValues: Map<string, string>,
+}
+
+export interface SingleChoiceRawFilterMenuProps extends SingleChoiceFilterMenuProps {
+  filters: RawFilterProps[],
+}
+
+export interface SingleChoiceObjectFilterMenuProps<T> extends SingleChoiceFilterMenuProps {
+  filters: ObjectFilterProps<T>[],
+  rawList: T[],
+}

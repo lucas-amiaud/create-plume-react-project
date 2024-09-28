@@ -1,4 +1,6 @@
-import { FocusEvent, ChangeEvent } from 'react';
+import { DateRange } from '@mui/lab';
+import { Dayjs } from 'dayjs';
+import { ChangeEvent, FocusEvent } from 'react';
 import { Control } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 
@@ -9,6 +11,7 @@ export type InputTextProps = {
   useNameAsId?: boolean,
   autoComplete?: string,
   disabled?: boolean,
+  readonly?: boolean,
   defaultValue?: string,
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>,
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
@@ -42,3 +45,18 @@ export type SelectOptionProps = {
   label: string,
   value: string,
 };
+
+type GenericInputDateProps = {
+  locale: string,
+  disableOpenPicker?: boolean,
+  disableFuture?: boolean,
+  showTodayButton?: boolean,
+} & InputTextProps;
+
+export type InputDateProps = {
+  onDateChange?: (value: Dayjs) => void,
+} & GenericInputDateProps;
+
+export type InputDateRangeProps = {
+  onDateChange?: (values: DateRange<Dayjs>) => void,
+} & GenericInputDateProps;

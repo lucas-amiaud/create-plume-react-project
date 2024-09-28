@@ -38,6 +38,17 @@ const frMessages: Translations = {
     home: 'Accueil',
     users: 'Gestion des utilisateurs',
     user_list: 'Utilisateurs',
+    settings: 'Paramètres',
+    log_api: 'API Logs',
+  },
+  // format
+  format: {
+    date: 'DD/MM/YYYY',
+    date_mask: '__/__/____',
+    hour: 'hh:mm',
+    hour_mask: '__:__',
+    date_hour: 'DD/MM/YYYY hh:mm',
+    date_hour_mask: '__/__/____ __:__',
   },
   // home
   home: {
@@ -71,6 +82,23 @@ const frMessages: Translations = {
       count: (count: number) => `Nombre d'utilisateurs : ${count}`,
     },
   },
+  // logs api
+  logs_api: {
+    title_list: 'Liste des appels API',
+    title_detail: (api: string) => `Détails de l'appel à l'API ${api}`,
+    api: 'API',
+    url: 'URL',
+    date: 'Date de l\'appel',
+    method: 'Méthode HTTP',
+    status_code: 'Code de retour',
+    body_request: 'Corps de la requête',
+    body_response: 'Corps de la réponse',
+    header_request: 'Entêtes de la requête',
+    header_response: 'Entêtes de la réponse',
+    list: {
+      count: (count: number) => `Nombre de logs API : ${count}`,
+    },
+  },
   // sorts wording
   sort: {
     user: {
@@ -79,6 +107,10 @@ const frMessages: Translations = {
       creation_date_asc: 'Trier du plus ancien au plus nouveau',
       creation_date_desc: 'Trier du plus nouveau au plus ancien',
     },
+    logs_api: {
+      date_desc: 'Trier du plus nouveau au plus ancien',
+      date_asc: 'Trier du plus ancien au plus nouveau',
+    },
   },
   // filters wording
   filter: {
@@ -86,6 +118,11 @@ const frMessages: Translations = {
       title: 'Filtres',
       name: 'Nom',
       role: 'Rôle',
+    },
+    logs_api: {
+      api_name: 'Nom d\'API',
+      status_code: 'Code de retour',
+      method: 'Méthode HTTP',
     },
   },
   // errors

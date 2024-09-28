@@ -39,6 +39,17 @@ export type Translations = {
     home: string,
     users: string,
     user_list: string,
+    settings: string,
+    log_api: string,
+  },
+  // format
+  format: {
+    date: string,
+    date_mask: string,
+    hour: string,
+    hour_mask: string,
+    date_hour: string,
+    date_hour_mask: string,
   },
   // home
   home: {
@@ -72,6 +83,23 @@ export type Translations = {
       count: (count: number) => string,
     },
   },
+  // logs api
+  logs_api: {
+    title_list: string,
+    title_detail: (api: string) => string,
+    api: string,
+    url: string,
+    date: string,
+    method: string,
+    status_code: string,
+    body_request: string,
+    body_response: string,
+    header_request: string,
+    header_response: string,
+    list: {
+      count: (count: number) => string,
+    },
+  },
   // sorts wording
   sort: {
     user: {
@@ -80,6 +108,10 @@ export type Translations = {
       creation_date_asc: string,
       creation_date_desc: string,
     },
+    logs_api: {
+      date_desc: string,
+      date_asc: string,
+    },
   },
   // filters wording
   filter: {
@@ -87,6 +119,11 @@ export type Translations = {
       title: string,
       name: string,
       role: string,
+    },
+    logs_api: {
+      api_name: string,
+      status_code: string,
+      method: string,
     },
   },
   // errors
